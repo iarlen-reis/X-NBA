@@ -33,6 +33,142 @@
                     }
                 }
             }
+        },
+        "/api/teams": {
+            "get": {
+                "tags": [
+                    "Teams"
+                ],
+                "summary": "Get all teams",
+                "operationId": "2642e2ad2a311c5e9cebef95674896e5",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "string",
+                                                "example": "1"
+                                            },
+                                            "name": {
+                                                "type": "string",
+                                                "example": "Team 1"
+                                            },
+                                            "slug": {
+                                                "type": "string",
+                                                "example": "team-1"
+                                            },
+                                            "stadium": {
+                                                "type": "string",
+                                                "example": "Stadium 1"
+                                            },
+                                            "city": {
+                                                "type": "string",
+                                                "example": "City 1"
+                                            },
+                                            "country": {
+                                                "type": "string",
+                                                "example": "Country 1"
+                                            },
+                                            "coach": {
+                                                "type": "string",
+                                                "example": "Coach 1"
+                                            },
+                                            "created_at": {
+                                                "type": "string",
+                                                "example": "2023-01-01T00:00:00.000000Z"
+                                            },
+                                            "updated_at": {
+                                                "type": "string",
+                                                "example": "2023-01-01T00:00:00.000000Z"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/teams/{id}": {
+            "get": {
+                "tags": [
+                    "Teams"
+                ],
+                "summary": "Get a team",
+                "operationId": "0c5ebf9352e202e3125d6d3e773f33ca",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The team ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Team 1"
+                                        },
+                                        "slug": {
+                                            "type": "string",
+                                            "example": "team-1"
+                                        },
+                                        "stadium": {
+                                            "type": "string",
+                                            "example": "Stadium 1"
+                                        },
+                                        "city": {
+                                            "type": "string",
+                                            "example": "City 1"
+                                        },
+                                        "country": {
+                                            "type": "string",
+                                            "example": "Country 1"
+                                        },
+                                        "coach": {
+                                            "type": "string",
+                                            "example": "Coach 1"
+                                        },
+                                        "league": {
+                                            "type": "string",
+                                            "example": "League 1"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -45,6 +181,9 @@
         }
     },
     "tags": [
+        {
+            "name": "Teams"
+        },
         {
             "name": "Hello",
             "description": "Hello"
