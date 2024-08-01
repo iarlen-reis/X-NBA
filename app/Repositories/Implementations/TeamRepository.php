@@ -7,9 +7,13 @@ use App\Models\Team;
 
 class TeamRepository implements TeamRepositoryInterface
 {
-    public function index()
+    public function index(string $league)
     {
-        return Team::all();
+        if (!$league) {
+            return Team::all();
+        }
+
+        return Team::where('league', $league)->get();
     }
 
     public function show(string $id)

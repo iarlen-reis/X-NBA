@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Repositories\Contracts\TeamRepositoryInterface;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class TeamService
@@ -15,9 +16,11 @@ class TeamService
         $this->teamRepository = $teamRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json($this->teamRepository->index());
+        $league = str($request->query('league'))->upper()->value();
+
+        return response()->json($this->teamRepository->index($league));
     }
 
     public function show(string $id)

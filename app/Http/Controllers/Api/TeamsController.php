@@ -26,6 +26,15 @@ class TeamsController extends Controller
      *     path="/api/teams",
      *     tags={"Teams"},
      *     summary="Get all teams",
+     *     @OA\Parameter(
+     *         name="league",
+     *         in="query",
+     *         description="Filter teams by league",
+     *         @OA\Schema(
+     *             type="string",
+     *             enum={"NBA", "WNBA"}
+     *         )
+     *     ),
      *     @OA\Response(
      *         response="200",
      *         description="Success",
@@ -47,9 +56,9 @@ class TeamsController extends Controller
      *     ),
      * )
      */
-    public function index()
+    public function index(Request $request)
     {
-        return $this->teamService->index();
+        return $this->teamService->index($request);
     }
 
     /**

@@ -41,6 +41,20 @@
                 ],
                 "summary": "Get all teams",
                 "operationId": "2642e2ad2a311c5e9cebef95674896e5",
+                "parameters": [
+                    {
+                        "name": "league",
+                        "in": "query",
+                        "description": "Filter teams by league",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "NBA",
+                                "WNBA"
+                            ]
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -160,6 +174,38 @@
                                         "updated_at": {
                                             "type": "string",
                                             "example": "2023-01-01T00:00:00.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Team not found."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid ID provided, use a valid UUID."
                                         }
                                     },
                                     "type": "object"

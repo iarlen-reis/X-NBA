@@ -128,4 +128,43 @@ class TeamTest extends TestCase
             $json->where('message', 'Invalid ID provided, use a valid UUID.');
         });
     }
+
+    public function test_return_the_teams_from_the_league_filter(): void
+    {
+        $teams = Team::factory(10)->create();
+
+        $response = $this->getJson('/api/teams?league=nba');
+
+        $response->assertStatus(200);
+
+        $response->assertJsonStructure([
+            'id',
+            'name',
+            'slug',
+            'stadium',
+            'city',
+            'country',
+            'coach',
+            'league',
+            'created_at',
+            'updated_at',
+        ]);
+
+        $response->assertJson(function (AssertableJson $json) use ($teams) {
+            $json->hasAll([
+                'id',
+                'name',
+                'slug',
+                'stadium',
+                'city',
+                'country',
+                'coach',
+                'league',
+                'created_at',
+                'updated_at',
+            ]);
+
+            $json->whereContains('league', 'nba');
+        });
+    }
 }
