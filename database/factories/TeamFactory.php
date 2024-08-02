@@ -24,6 +24,7 @@ class TeamFactory extends Factory
             'country' => $this->faker->country(),
             'coach' => $this->faker->name(),
             'league' => $this->faker->randomElement(['NBA', 'WNBA']),
+            'active' => $this->faker->boolean(chanceOfGettingTrue: 100),
         ];
     }
 }
