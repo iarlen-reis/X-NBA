@@ -92,6 +92,14 @@
                                                 "type": "string",
                                                 "example": "Coach 1"
                                             },
+                                            "league": {
+                                                "type": "string",
+                                                "example": "League 1"
+                                            },
+                                            "active": {
+                                                "type": "boolean",
+                                                "example": "true"
+                                            },
                                             "created_at": {
                                                 "type": "string",
                                                 "example": "2023-01-01T00:00:00.000000Z"
@@ -103,6 +111,107 @@
                                         },
                                         "type": "object"
                                     }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Teams"
+                ],
+                "summary": "Create a team",
+                "operationId": "0e540674a041f25d6f9b97f530ae814f",
+                "requestBody": {
+                    "description": "Team data",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Team 1"
+                                    },
+                                    "slug": {
+                                        "type": "string",
+                                        "example": "team-1"
+                                    },
+                                    "stadium": {
+                                        "type": "string",
+                                        "example": "Stadium 1"
+                                    },
+                                    "city": {
+                                        "type": "string",
+                                        "example": "City 1"
+                                    },
+                                    "country": {
+                                        "type": "string",
+                                        "example": "Country 1"
+                                    },
+                                    "coach": {
+                                        "type": "string",
+                                        "example": "Coach 1"
+                                    },
+                                    "league": {
+                                        "type": "string",
+                                        "example": "League 1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Team 1"
+                                        },
+                                        "slug": {
+                                            "type": "string",
+                                            "example": "team-1"
+                                        },
+                                        "stadium": {
+                                            "type": "string",
+                                            "example": "Stadium 1"
+                                        },
+                                        "city": {
+                                            "type": "string",
+                                            "example": "City 1"
+                                        },
+                                        "country": {
+                                            "type": "string",
+                                            "example": "Country 1"
+                                        },
+                                        "coach": {
+                                            "type": "string",
+                                            "example": "Coach 1"
+                                        },
+                                        "league": {
+                                            "type": "string",
+                                            "example": "League 1"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
@@ -167,6 +276,10 @@
                                             "type": "string",
                                             "example": "League 1"
                                         },
+                                        "active": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        },
                                         "created_at": {
                                             "type": "string",
                                             "example": "2023-01-01T00:00:00.000000Z"
@@ -180,6 +293,209 @@
                                 }
                             }
                         }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Team not found."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid ID provided, use a valid UUID."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Teams"
+                ],
+                "summary": "Update a team",
+                "operationId": "916db81b9fe0b789959f2092bd9fe1a0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The team ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Team data",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Team 1"
+                                    },
+                                    "slug": {
+                                        "type": "string",
+                                        "example": "team-1"
+                                    },
+                                    "stadium": {
+                                        "type": "string",
+                                        "example": "Stadium 1"
+                                    },
+                                    "city": {
+                                        "type": "string",
+                                        "example": "City 1"
+                                    },
+                                    "country": {
+                                        "type": "string",
+                                        "example": "Country 1"
+                                    },
+                                    "coach": {
+                                        "type": "string",
+                                        "example": "Coach 1"
+                                    },
+                                    "league": {
+                                        "type": "string",
+                                        "example": "League 1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Team 1"
+                                        },
+                                        "slug": {
+                                            "type": "string",
+                                            "example": "team-1"
+                                        },
+                                        "stadium": {
+                                            "type": "string",
+                                            "example": "Stadium 1"
+                                        },
+                                        "city": {
+                                            "type": "string",
+                                            "example": "City 1"
+                                        },
+                                        "country": {
+                                            "type": "string",
+                                            "example": "Country 1"
+                                        },
+                                        "coach": {
+                                            "type": "string",
+                                            "example": "Coach 1"
+                                        },
+                                        "league": {
+                                            "type": "string",
+                                            "example": "League 1"
+                                        },
+                                        "active": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Team not found."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid ID provided, use a valid UUID."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Teams"
+                ],
+                "summary": "Deactivate or activate a team",
+                "operationId": "7d223251fc21b14a1812dd867feaddb9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The team ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success"
                     },
                     "404": {
                         "description": "Not Found",
