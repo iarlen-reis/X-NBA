@@ -20,19 +20,69 @@ class TeamService
     {
         $league = str($request->query('league'))->upper()->value();
 
-        return response()->json($this->teamRepository->index($league));
+        $teams = $this->teamRepository->index($league);
+
+        return response()->json($teams);
     }
 
     public function show(string $id)
     {
-        if (!Str::isUuid($id)) {
-            return response()->json([
-                'message' => 'Invalid ID provided, use a valid UUID.',
-            ], 400);
-        }
-
         try {
-            return response()->json($this->teamRepository->show($id));
+            if (!Str::isUuid($id)) {
+                return response()->json([
+                    'message' => 'Invalid ID provided, use a valid UUID.',
+                ], 400);
+            }
+
+            $team = $this->teamRepository->show($id);
+
+            return response()->json($team);
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'message' => 'Team not found.',
+            ], 404);
+        }
+    }
+
+    public function store(Request $request)
+    {
+        $team = $this->teamRepository->store($request->all());
+
+        return response()->json($team, 201);
+    }
+
+    public function update(Request $request, string $id)
+    {
+        try {
+
+            if (!Str::isUuid($id)) {
+                return response()->json([
+                    'message' => 'Invalid ID provided, use a valid UUID.',
+                ], 400);
+            }
+
+            $team = $this->teamRepository->update($id, $request->all());
+
+            return response()->json($team);
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'message' => 'Team not found.',
+            ], 404);
+        }
+    }
+
+    public function destroy(string $id)
+    {
+        try {
+            if (!Str::isUuid($id)) {
+                return response()->json([
+                    'message' => 'Invalid ID provided, use a valid UUID.',
+                ], 400);
+            }
+
+            $this->teamRepository->destroy($id);
+
+            return response()->json(status: 204);
         } catch (ModelNotFoundException $e) {
             return response()->json([
                 'message' => 'Team not found.',
