@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Team;
 
+use App\Models\Player;
 use App\Models\Team;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\Fluent\AssertableJson;
@@ -56,6 +57,8 @@ class TeamTest extends TestCase
     {
         $team = Team::factory()->create(['active' => true]);
 
+        $player = Player::factory(2)->create(['team_id' => $team->id]);
+
         $response = $this->getJson("/api/teams/" . $team->id)
             ->assertStatus(200);
 
@@ -69,6 +72,7 @@ class TeamTest extends TestCase
             'coach',
             'league',
             'active',
+            'players',
             'created_at',
             'updated_at',
         ]);
@@ -84,6 +88,7 @@ class TeamTest extends TestCase
                 'coach',
                 'league',
                 'active',
+                'players',
                 'created_at',
                 'updated_at',
             ]);
@@ -98,6 +103,7 @@ class TeamTest extends TestCase
                 'coach' => $team->coach,
                 'league' => $team->league,
                 'active' => $team->active,
+                'players' => $team->players,
             ]);
         });
     }
