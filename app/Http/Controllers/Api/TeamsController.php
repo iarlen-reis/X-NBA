@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Team;
+use App\Http\Requests\Team\StoreTeamRequest;
 use App\Services\TeamService;
 
 use Illuminate\Http\Request;
@@ -153,10 +153,26 @@ class TeamsController extends Controller
      *              @OA\Property(property="updated_at", type="string", example="2023-01-01T00:00:00.000000Z")
      *         )
      *     ),
+     *     @OA\Response(
+     *         response="422",
+     *         description="Unprocessable Entity",
+     *         @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(property="message", type="string", example="The name field is required."),
+     *              @OA\Property(
+     *                  property="errors",
+     *                  type="object",
+     *                  @OA\Property(property="name", type="array", @OA\Items(type="string", example="The name field is required."))
+     *              ),
+     *           )
+     *         )
+     *      ),
      * )
      */
-    public function store(Request $request)
+    public function store(StoreTeamRequest $request)
     {
+        $request->validated();
+
         return $this->teamService->store($request);
     }
 
@@ -221,10 +237,26 @@ class TeamsController extends Controller
      *              @OA\Property(property="message", type="string", example="Invalid ID provided, use a valid UUID.")
      *         )
      *     ),
+     *     @OA\Response(
+     *         response="422",
+     *         description="Unprocessable Entity",
+     *         @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(property="message", type="string", example="The name field is required."),
+     *              @OA\Property(
+     *                  property="errors",
+     *                  type="object",
+     *                  @OA\Property(property="name", type="array", @OA\Items(type="string", example="The name field is required."))
+     *              ),
+     *           )
+     *         )
+     *     ),
      * )
      */
-    public function update(Request $request, string $id)
+    public function update(StoreTeamRequest $request, string $id)
     {
+        $request->validated();
+
         return $this->teamService->update($request, $id);
     }
 
