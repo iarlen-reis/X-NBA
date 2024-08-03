@@ -92,7 +92,22 @@ class TeamsController extends Controller
      *              @OA\Property(property="league", type="string", example="League 1"),
      *              @OA\Property(property="active", type="boolean", example="true"),
      *              @OA\Property(property="created_at", type="string", example="2023-01-01T00:00:00.000000Z"),
-     *              @OA\Property(property="updated_at", type="string", example="2023-01-01T00:00:00.000000Z")
+     *              @OA\Property(property="updated_at", type="string", example="2023-01-01T00:00:00.000000Z"),
+     *              @OA\Property(property="players", type="array",
+     *                  @OA\Items(
+     *                      type="object",
+     *                      @OA\Property(property="id", type="string", example="1"),
+     *                      @OA\Property(property="name", type="string", example="Player 1"),
+     *                      @OA\Property(property="age", type="integer", example="25"),
+     *                      @OA\Property(property="height", type="integer", example="180"),
+     *                      @OA\Property(property="weight", type="integer", example="80"),
+     *                      @OA\Property(property="position", type="string", example="Center"),
+     *                      @OA\Property(property="league", type="string", example="League 1"),
+     *                      @OA\Property(property="team_id", type="string", example="1"),
+     *                      @OA\Property(property="created_at", type="string", example="2023-01-01T00:00:00.000000Z"),
+     *                      @OA\Property(property="updated_at", type="string", example="2023-01-01T00:00:00.000000Z")
+     *                  )
+     *              )
      *         )
      *     ),
      *     @OA\Response(
