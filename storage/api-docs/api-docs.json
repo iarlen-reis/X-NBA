@@ -34,6 +34,567 @@
                 }
             }
         },
+        "/api/players": {
+            "get": {
+                "tags": [
+                    "Players"
+                ],
+                "summary": "Get all players",
+                "operationId": "f254a58e1dd122db3e759f08fd18ac52",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "string",
+                                                "example": "1"
+                                            },
+                                            "name": {
+                                                "type": "string",
+                                                "example": "Player 1"
+                                            },
+                                            "age": {
+                                                "type": "integer",
+                                                "example": "25"
+                                            },
+                                            "height": {
+                                                "type": "integer",
+                                                "example": "180"
+                                            },
+                                            "weight": {
+                                                "type": "integer",
+                                                "example": "80"
+                                            },
+                                            "position": {
+                                                "type": "string",
+                                                "example": "Center"
+                                            },
+                                            "league": {
+                                                "type": "string",
+                                                "example": "League 1"
+                                            },
+                                            "active": {
+                                                "type": "boolean",
+                                                "example": "true"
+                                            },
+                                            "team_id": {
+                                                "type": "string",
+                                                "example": "1"
+                                            },
+                                            "created_at": {
+                                                "type": "string",
+                                                "example": "2023-01-01T00:00:00.000000Z"
+                                            },
+                                            "updated_at": {
+                                                "type": "string",
+                                                "example": "2023-01-01T00:00:00.000000Z"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Players"
+                ],
+                "summary": "Create a player",
+                "operationId": "f6cbf7baa4403426fcea841057e16774",
+                "requestBody": {
+                    "description": "Player data",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Michael Jordan"
+                                    },
+                                    "age": {
+                                        "type": "interger",
+                                        "example": 25
+                                    },
+                                    "height": {
+                                        "type": "interger",
+                                        "example": 180
+                                    },
+                                    "weight": {
+                                        "type": "interger",
+                                        "example": 80
+                                    },
+                                    "position": {
+                                        "type": "string",
+                                        "example": "Center"
+                                    },
+                                    "league": {
+                                        "type": "string",
+                                        "example": "NBA"
+                                    },
+                                    "team_id": {
+                                        "type": "string",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Player 1"
+                                        },
+                                        "age": {
+                                            "type": "integer",
+                                            "example": "25"
+                                        },
+                                        "height": {
+                                            "type": "integer",
+                                            "example": "180"
+                                        },
+                                        "weight": {
+                                            "type": "integer",
+                                            "example": "80"
+                                        },
+                                        "position": {
+                                            "type": "string",
+                                            "example": "Center"
+                                        },
+                                        "league": {
+                                            "type": "string",
+                                            "example": "NBA"
+                                        },
+                                        "team_id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The name field is required."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The name field is required."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/players/{id}": {
+            "get": {
+                "tags": [
+                    "Players"
+                ],
+                "summary": "Get a player",
+                "operationId": "05c35f51a0a8b1f82291ec3332653ee9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The player ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Player 1"
+                                        },
+                                        "age": {
+                                            "type": "integer",
+                                            "example": "25"
+                                        },
+                                        "height": {
+                                            "type": "integer",
+                                            "example": "180"
+                                        },
+                                        "weight": {
+                                            "type": "integer",
+                                            "example": "80"
+                                        },
+                                        "position": {
+                                            "type": "string",
+                                            "example": "Center"
+                                        },
+                                        "league": {
+                                            "type": "string",
+                                            "example": "League 1"
+                                        },
+                                        "team_id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "active": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        },
+                                        "team": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "example": "1"
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Team 1"
+                                                },
+                                                "slug": {
+                                                    "type": "string",
+                                                    "example": "team-1"
+                                                },
+                                                "stadium": {
+                                                    "type": "string",
+                                                    "example": "Stadium 1"
+                                                },
+                                                "city": {
+                                                    "type": "string",
+                                                    "example": "City 1"
+                                                },
+                                                "country": {
+                                                    "type": "string",
+                                                    "example": "Country 1"
+                                                },
+                                                "coach": {
+                                                    "type": "string",
+                                                    "example": "Coach 1"
+                                                },
+                                                "league": {
+                                                    "type": "string",
+                                                    "example": "League 1"
+                                                },
+                                                "active": {
+                                                    "type": "boolean",
+                                                    "example": "true"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2023-01-01T00:00:00.000000Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2023-01-01T00:00:00.000000Z"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Player not found."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid ID provided, use a valid UUID."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Players"
+                ],
+                "summary": "Update a player",
+                "operationId": "a37f1276fdf61a142d62d219c5d43ddf",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The player ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Player data",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Michael Jordan"
+                                    },
+                                    "age": {
+                                        "type": "interger",
+                                        "example": 25
+                                    },
+                                    "height": {
+                                        "type": "interger",
+                                        "example": 180
+                                    },
+                                    "weight": {
+                                        "type": "interger",
+                                        "example": 80
+                                    },
+                                    "position": {
+                                        "type": "string",
+                                        "example": "Center"
+                                    },
+                                    "league": {
+                                        "type": "string",
+                                        "example": "NBA"
+                                    },
+                                    "team_id": {
+                                        "type": "string",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Player 1"
+                                        },
+                                        "age": {
+                                            "type": "integer",
+                                            "example": "25"
+                                        },
+                                        "height": {
+                                            "type": "integer",
+                                            "example": "180"
+                                        },
+                                        "weight": {
+                                            "type": "integer",
+                                            "example": "80"
+                                        },
+                                        "position": {
+                                            "type": "string",
+                                            "example": "Center"
+                                        },
+                                        "league": {
+                                            "type": "string",
+                                            "example": "NBA"
+                                        },
+                                        "active": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        },
+                                        "team_id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Player not found."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid ID provided, use a valid UUID."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Players"
+                ],
+                "summary": "Soft delete a player",
+                "operationId": "53b8bce35af4da8149f2b1f247c8af0f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The player ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Player not found."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid ID provided, use a valid UUID."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/teams": {
             "get": {
                 "tags": [
@@ -315,6 +876,54 @@
                                         "updated_at": {
                                             "type": "string",
                                             "example": "2023-01-01T00:00:00.000000Z"
+                                        },
+                                        "players": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "example": "1"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Player 1"
+                                                    },
+                                                    "age": {
+                                                        "type": "integer",
+                                                        "example": "25"
+                                                    },
+                                                    "height": {
+                                                        "type": "integer",
+                                                        "example": "180"
+                                                    },
+                                                    "weight": {
+                                                        "type": "integer",
+                                                        "example": "80"
+                                                    },
+                                                    "position": {
+                                                        "type": "string",
+                                                        "example": "Center"
+                                                    },
+                                                    "league": {
+                                                        "type": "string",
+                                                        "example": "League 1"
+                                                    },
+                                                    "team_id": {
+                                                        "type": "string",
+                                                        "example": "1"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2023-01-01T00:00:00.000000Z"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2023-01-01T00:00:00.000000Z"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
                                         }
                                     },
                                     "type": "object"
@@ -599,6 +1208,9 @@
         }
     },
     "tags": [
+        {
+            "name": "Players"
+        },
         {
             "name": "Teams"
         },

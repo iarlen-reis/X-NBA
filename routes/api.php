@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\HelloWord;
+use App\Http\Controllers\Api\PlayersController;
 use App\Http\Controllers\Api\TeamsController;
 use Illuminate\Support\Facades\Route;
 
@@ -8,3 +9,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/hello', [HelloWord::class, 'index']);
 
 Route::apiResource('teams', TeamsController::class);
+Route::apiResource('players', PlayersController::class);
