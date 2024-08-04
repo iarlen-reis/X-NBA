@@ -6,21 +6,15 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Player extends Model
+class Average extends Model
 {
     use HasFactory, HasUuids;
 
     public $guarded = [];
 
-    public function team(): BelongsTo
+    public function player(): BelongsTo
     {
-        return $this->belongsTo(Team::class);
-    }
-
-    public function average(): HasOne
-    {
-        return $this->hasOne(Average::class);
+        return $this->belongsTo(Player::class);
     }
 }
