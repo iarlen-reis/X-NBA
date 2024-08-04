@@ -576,34 +576,6 @@
                 }
             }
         },
-        "/api/hello": {
-            "get": {
-                "tags": [
-                    "Hello"
-                ],
-                "summary": "Returns a hello message",
-                "description": "Returns a hello message",
-                "operationId": "1209f89296689501a6f9606b149d89c1",
-                "responses": {
-                    "200": {
-                        "description": "Successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Hello World!"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/api/players": {
             "get": {
                 "tags": [
@@ -1786,10 +1758,6 @@
         },
         {
             "name": "Teams"
-        },
-        {
-            "name": "Hello",
-            "description": "Hello"
         }
     ]
 }
