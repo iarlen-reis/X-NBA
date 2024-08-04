@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Average;
 use App\Models\Team;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -27,5 +28,10 @@ class PlayerFactory extends Factory
             'active' => $this->faker->boolean(chanceOfGettingTrue: 100),
             'team_id' => Team::factory(),
         ];
+    }
+
+    public function withAverage()
+    {
+        return $this->has(Average::factory(), 'average');
     }
 }
