@@ -19,34 +19,44 @@ class PlayerTest extends TestCase
             'name' => 'New York Knicks',
         ]);
 
-        $players = Player::factory(4)->create();
+        Player::factory(2)->withAverage()->create();
 
         $response = $this->getJson('/api/players')->assertStatus(200);
 
-        $response->assertJsonCount(4);
+        $response->assertJsonCount(2);
 
-        $response->assertJson(function (AssertableJson $json) use ($players) {
-            $json->each(function ($json) use ($players) {
-                $json->whereAllType([
-                    'id' => 'string',
-                    'name' => 'string',
-                    'age' => 'integer',
-                    'height' => 'integer',
-                    'weight' => 'integer',
-                    'position' => 'string',
-                    'league' => 'string',
-                    'team_id' => 'string',
-                    'active' => 'boolean',
-                    'created_at' => 'string',
-                    'updated_at' => 'string',
-                ]);
+        $response->assertJson(function (AssertableJson $json) {
+            $json->has(0, function ($json) {
+                $json->whereType('id', 'string')
+                    ->whereType('name', 'string')
+                    ->whereType('age', 'integer')
+                    ->whereType('height', 'integer')
+                    ->whereType('weight', 'integer')
+                    ->whereType('position', 'string')
+                    ->whereType('league', 'string')
+                    ->whereType('team_id', 'string')
+                    ->whereType('active', 'boolean')
+                    ->whereType('average', 'array')
+                    ->whereType('created_at', 'string')
+                    ->whereType('updated_at', 'string')
+                    ->has('average', function ($json) {
+                        $json->whereType('id', 'string')
+                            ->whereType('pts', 'integer')
+                            ->whereType('reb', 'integer')
+                            ->whereType('ast', 'integer')
+                            ->whereType('stl', 'integer')
+                            ->whereType('blk', 'integer')
+                            ->whereType('player_id', 'string')
+                            ->whereType('created_at', 'string')
+                            ->whereType('updated_at', 'string');
+                    });
             });
         });
     }
 
     public function test_show_player_endpoint(): void
     {
-        $player = Player::factory()->create()->load('team');
+        $player = Player::factory()->withAverage()->create()->load('team');
 
         $response = $this->getJson("/api/players/{$player->id}")
             ->assertStatus(200);
@@ -62,6 +72,7 @@ class PlayerTest extends TestCase
             'team_id' => $player->team_id,
             'active' => $player->active,
             'team' => $player->team->toArray(),
+            'average' => $player->average->toArray(),
         ]);
     }
 
