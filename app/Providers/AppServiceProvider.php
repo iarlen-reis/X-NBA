@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Repositories\Contracts\AverageRepositoryInterface;
 use App\Repositories\Contracts\PlayerRepositoryInterface;
 use App\Repositories\Contracts\TeamRepositoryInterface;
+use App\Repositories\Implementations\AverageRepository;
 use App\Repositories\Implementations\PlayerRepository;
 use App\Repositories\Implementations\TeamRepository;
 use Illuminate\Support\Facades\URL;
@@ -24,6 +26,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             PlayerRepositoryInterface::class,
             PlayerRepository::class,
+        );
+
+        $this->app->bind(
+            AverageRepositoryInterface::class,
+            AverageRepository::class,
         );
     }
 
