@@ -6,6 +6,576 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/averages": {
+            "get": {
+                "tags": [
+                    "Averages"
+                ],
+                "summary": "Get all averages",
+                "operationId": "8a69b0baf38ce78b4136282d1d89966c",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "string",
+                                                "example": "1"
+                                            },
+                                            "pts": {
+                                                "type": "integer",
+                                                "example": "25"
+                                            },
+                                            "reb": {
+                                                "type": "integer",
+                                                "example": "25"
+                                            },
+                                            "ast": {
+                                                "type": "integer",
+                                                "example": "25"
+                                            },
+                                            "stl": {
+                                                "type": "integer",
+                                                "example": "25"
+                                            },
+                                            "blk": {
+                                                "type": "integer",
+                                                "example": "25"
+                                            },
+                                            "player_id": {
+                                                "type": "string",
+                                                "example": "1"
+                                            },
+                                            "created_at": {
+                                                "type": "string",
+                                                "example": "2023-01-01T00:00:00.000000Z"
+                                            },
+                                            "updated_at": {
+                                                "type": "string",
+                                                "example": "2023-01-01T00:00:00.000000Z"
+                                            },
+                                            "player": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "example": "1"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Player 1"
+                                                    },
+                                                    "age": {
+                                                        "type": "integer",
+                                                        "example": "25"
+                                                    },
+                                                    "height": {
+                                                        "type": "integer",
+                                                        "example": "180"
+                                                    },
+                                                    "weight": {
+                                                        "type": "integer",
+                                                        "example": "80"
+                                                    },
+                                                    "position": {
+                                                        "type": "string",
+                                                        "example": "Center"
+                                                    },
+                                                    "league": {
+                                                        "type": "string",
+                                                        "example": "League 1"
+                                                    },
+                                                    "team_id": {
+                                                        "type": "string",
+                                                        "example": "1"
+                                                    },
+                                                    "active": {
+                                                        "type": "boolean",
+                                                        "example": "true"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2023-01-01T00:00:00.000000Z"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2023-01-01T00:00:00.000000Z"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Averages"
+                ],
+                "summary": "Create an average",
+                "operationId": "00f0e4f83fe7dfb21cc01cb768a6bff1",
+                "requestBody": {
+                    "description": "Average data",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "pts": {
+                                        "type": "interger",
+                                        "example": 25
+                                    },
+                                    "reb": {
+                                        "type": "interger",
+                                        "example": 25
+                                    },
+                                    "ast": {
+                                        "type": "interger",
+                                        "example": 25
+                                    },
+                                    "stl": {
+                                        "type": "interger",
+                                        "example": 25
+                                    },
+                                    "blk": {
+                                        "type": "interger",
+                                        "example": 25
+                                    },
+                                    "player_id": {
+                                        "type": "string",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "pts": {
+                                            "type": "integer",
+                                            "example": "25"
+                                        },
+                                        "reb": {
+                                            "type": "integer",
+                                            "example": "25"
+                                        },
+                                        "ast": {
+                                            "type": "integer",
+                                            "example": "25"
+                                        },
+                                        "stl": {
+                                            "type": "integer",
+                                            "example": "25"
+                                        },
+                                        "blk": {
+                                            "type": "integer",
+                                            "example": "25"
+                                        },
+                                        "player_id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The name field is required."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The name field is required."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/averages/{id}": {
+            "get": {
+                "tags": [
+                    "Averages"
+                ],
+                "summary": "Get an average",
+                "operationId": "e8d208f2b3814fc5e8074612ce1b3e9a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The average ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "pts": {
+                                            "type": "integer",
+                                            "example": "25"
+                                        },
+                                        "reb": {
+                                            "type": "integer",
+                                            "example": "25"
+                                        },
+                                        "ast": {
+                                            "type": "integer",
+                                            "example": "25"
+                                        },
+                                        "stl": {
+                                            "type": "integer",
+                                            "example": "25"
+                                        },
+                                        "blk": {
+                                            "type": "integer",
+                                            "example": "25"
+                                        },
+                                        "player_id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        },
+                                        "player": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "example": "1"
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Player 1"
+                                                },
+                                                "age": {
+                                                    "type": "integer",
+                                                    "example": "25"
+                                                },
+                                                "height": {
+                                                    "type": "integer",
+                                                    "example": "180"
+                                                },
+                                                "weight": {
+                                                    "type": "integer",
+                                                    "example": "80"
+                                                },
+                                                "position": {
+                                                    "type": "string",
+                                                    "example": "Center"
+                                                },
+                                                "league": {
+                                                    "type": "string",
+                                                    "example": "League 1"
+                                                },
+                                                "team_id": {
+                                                    "type": "string",
+                                                    "example": "1"
+                                                },
+                                                "active": {
+                                                    "type": "boolean",
+                                                    "example": "true"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2023-01-01T00:00:00.000000Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2023-01-01T00:00:00.000000Z"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Average not found."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid ID provided, use a valid UUID."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Averages"
+                ],
+                "summary": "Update an average",
+                "operationId": "8d3f259d26071c0a380d21e77326a198",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The average ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Average data",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "pts": {
+                                        "type": "interger",
+                                        "example": 25
+                                    },
+                                    "reb": {
+                                        "type": "interger",
+                                        "example": 25
+                                    },
+                                    "ast": {
+                                        "type": "interger",
+                                        "example": 25
+                                    },
+                                    "stl": {
+                                        "type": "interger",
+                                        "example": 25
+                                    },
+                                    "blk": {
+                                        "type": "interger",
+                                        "example": 25
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "pts": {
+                                            "type": "integer",
+                                            "example": "25"
+                                        },
+                                        "reb": {
+                                            "type": "integer",
+                                            "example": "25"
+                                        },
+                                        "ast": {
+                                            "type": "integer",
+                                            "example": "25"
+                                        },
+                                        "stl": {
+                                            "type": "integer",
+                                            "example": "25"
+                                        },
+                                        "blk": {
+                                            "type": "integer",
+                                            "example": "25"
+                                        },
+                                        "player_id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Average not found."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid ID provided, use a valid UUID."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Averages"
+                ],
+                "summary": "Delete an average",
+                "operationId": "34cff768240cda90d7b38a3a80771ce9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The average ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Average not found."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid ID provided, use a valid UUID."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/hello": {
             "get": {
                 "tags": [
@@ -1208,6 +1778,9 @@
         }
     },
     "tags": [
+        {
+            "name": "Averages"
+        },
         {
             "name": "Players"
         },
