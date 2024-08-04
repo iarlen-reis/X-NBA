@@ -9,12 +9,12 @@ class PlayerRepository implements PlayerRepositoryInterface
 {
     public function index()
     {
-        return Player::all();
+        return Player::all()->load('average');
     }
 
     public function show($id)
     {
-        return Player::findOrFail($id)->load('team');
+        return Player::findOrFail($id)->load(['team', 'average']);
     }
 
     public function store(array $data)
