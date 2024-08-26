@@ -29,6 +29,7 @@ class MatcheTest extends TestCase
                 $json->whereType('league', 'string');
                 $json->whereType('created_at', 'string');
                 $json->whereType('updated_at', 'string');
+                $json->whereType('matches_teams', 'array');
             });
         });
     }

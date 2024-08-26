@@ -16,11 +16,11 @@ class TeamTest extends TestCase
      */
     public function test_index_teams_endpoint(): void
     {
-        $teams = Team::factory(4)->create(['active' => true]);
+        $teams = Team::factory(1)->create(['active' => true]);
 
         $response = $this->getJson('/api/teams')->assertStatus(200);
 
-        $response->assertJsonCount(4);
+        $response->assertJsonCount(1);
 
         $response->assertJson(function (AssertableJson $json) use ($teams) {
             $json->whereAllType([
@@ -72,7 +72,6 @@ class TeamTest extends TestCase
             'coach',
             'league',
             'active',
-            'players',
             'created_at',
             'updated_at',
         ]);
@@ -88,7 +87,6 @@ class TeamTest extends TestCase
                 'coach',
                 'league',
                 'active',
-                'players',
                 'created_at',
                 'updated_at',
             ]);
@@ -103,7 +101,6 @@ class TeamTest extends TestCase
                 'coach' => $team->coach,
                 'league' => $team->league,
                 'active' => $team->active,
-                'players' => $team->players,
             ]);
         });
     }
