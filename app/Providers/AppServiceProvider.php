@@ -4,10 +4,12 @@ namespace App\Providers;
 
 use App\Repositories\Contracts\AverageRepositoryInterface;
 use App\Repositories\Contracts\MatcheRepositoryInterface;
+use App\Repositories\Contracts\MatchTeamRepositoryInterface;
 use App\Repositories\Contracts\PlayerRepositoryInterface;
 use App\Repositories\Contracts\TeamRepositoryInterface;
 use App\Repositories\Implementations\AverageRepository;
 use App\Repositories\Implementations\MatcheRepository;
+use App\Repositories\Implementations\MatchTeamRepository;
 use App\Repositories\Implementations\PlayerRepository;
 use App\Repositories\Implementations\TeamRepository;
 use Illuminate\Support\Facades\URL;
@@ -38,6 +40,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             MatcheRepositoryInterface::class,
             MatcheRepository::class,
+        );
+
+        $this->app->bind(
+            MatchTeamRepositoryInterface::class,
+            MatchTeamRepository::class,
         );
     }
 
