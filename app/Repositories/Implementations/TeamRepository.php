@@ -18,7 +18,7 @@ class TeamRepository implements TeamRepositoryInterface
 
     public function show(string $id)
     {
-        return Team::findOrFail($id)->load('players');
+        return Team::findOrFail($id);
     }
 
     public function store(array $data)

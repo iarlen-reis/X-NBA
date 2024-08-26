@@ -9,12 +9,12 @@ class MatcheRepository implements MatcheRepositoryInterface
 {
     public function index()
     {
-        return Matche::all();
+        return Matche::all()->load(['matchesTeams.team']);
     }
 
     public function show($id)
     {
-        return Matche::findOrFail($id);
+        return Matche::findOrFail($id)->load(['matchesTeams.team']);
     }
 
     public function store(array $data)
