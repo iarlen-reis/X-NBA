@@ -576,6 +576,838 @@
                 }
             }
         },
+        "/api/matches": {
+            "get": {
+                "tags": [
+                    "Matches"
+                ],
+                "summary": "Get all matches",
+                "operationId": "e5bd9d69cfc11a68d0e4da5e1eb82643",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "string",
+                                                "example": "1"
+                                            },
+                                            "date": {
+                                                "type": "string",
+                                                "example": "2023-01-01T00:00:00.000000Z"
+                                            },
+                                            "location": {
+                                                "type": "string",
+                                                "example": "Boston, MA"
+                                            },
+                                            "stadium": {
+                                                "type": "string",
+                                                "example": "TD Garden"
+                                            },
+                                            "league": {
+                                                "type": "string",
+                                                "example": "NBA"
+                                            },
+                                            "created_at": {
+                                                "type": "string",
+                                                "example": "2023-01-01T00:00:00.000000Z"
+                                            },
+                                            "updated_at": {
+                                                "type": "string",
+                                                "example": "2023-01-01T00:00:00.000000Z"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Matches"
+                ],
+                "summary": "Create a match",
+                "operationId": "ae1896496a73a97cc3fc484fd074bd67",
+                "requestBody": {
+                    "description": "Match data",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "date": {
+                                        "type": "string",
+                                        "example": "2023-01-01T00:00:00.000000Z"
+                                    },
+                                    "location": {
+                                        "type": "string",
+                                        "example": "Boston, MA"
+                                    },
+                                    "stadium": {
+                                        "type": "string",
+                                        "example": "TD Garden"
+                                    },
+                                    "league": {
+                                        "type": "string",
+                                        "example": "NBA"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "date": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        },
+                                        "location": {
+                                            "type": "string",
+                                            "example": "Boston, MA"
+                                        },
+                                        "stadium": {
+                                            "type": "string",
+                                            "example": "TD Garden"
+                                        },
+                                        "league": {
+                                            "type": "string",
+                                            "example": "NBA"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The date field is required."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The date field is required."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/matches/{id}": {
+            "get": {
+                "tags": [
+                    "Matches"
+                ],
+                "summary": "Get a match",
+                "operationId": "0b739aff10ae57f8cdde9b64c3d7b6e6",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The match ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "date": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        },
+                                        "location": {
+                                            "type": "string",
+                                            "example": "Boston, MA"
+                                        },
+                                        "stadium": {
+                                            "type": "string",
+                                            "example": "TD Garden"
+                                        },
+                                        "league": {
+                                            "type": "string",
+                                            "example": "NBA"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Match not found."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid ID provided, use a valid UUID."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Matches"
+                ],
+                "summary": "Update a match",
+                "operationId": "91a77ca198eb2a105106254008b16a4e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The match ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Match data",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "date": {
+                                        "type": "string",
+                                        "example": "2023-01-01T00:00:00.000000Z"
+                                    },
+                                    "location": {
+                                        "type": "string",
+                                        "example": "Boston, MA"
+                                    },
+                                    "stadium": {
+                                        "type": "string",
+                                        "example": "TD Garden"
+                                    },
+                                    "league": {
+                                        "type": "string",
+                                        "example": "NBA"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "date": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        },
+                                        "location": {
+                                            "type": "string",
+                                            "example": "Boston, MA"
+                                        },
+                                        "stadium": {
+                                            "type": "string",
+                                            "example": "TD Garden"
+                                        },
+                                        "league": {
+                                            "type": "string",
+                                            "example": "NBA"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Match not found."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid ID provided, use a valid UUID."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Matches"
+                ],
+                "summary": "delete a match",
+                "operationId": "fdf975427ab27d257a15c8266288c24d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The match ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Match not found."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid ID provided, use a valid UUID."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/match-teams": {
+            "get": {
+                "tags": [
+                    "Match-teams"
+                ],
+                "summary": "Get all match teams",
+                "operationId": "c2cfbbca6ee20592ddd43a2b1a53d498",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "string",
+                                                "example": "1"
+                                            },
+                                            "match_id": {
+                                                "type": "string",
+                                                "example": "1"
+                                            },
+                                            "team_id": {
+                                                "type": "string",
+                                                "example": "1"
+                                            },
+                                            "role": {
+                                                "type": "string",
+                                                "example": "home"
+                                            },
+                                            "created_at": {
+                                                "type": "string",
+                                                "example": "2023-01-01T00:00:00.000000Z"
+                                            },
+                                            "updated_at": {
+                                                "type": "string",
+                                                "example": "2023-01-01T00:00:00.000000Z"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Match-teams"
+                ],
+                "summary": "Create a match team",
+                "operationId": "1b8b28f32396b7b71a26eb18113a7cf2",
+                "requestBody": {
+                    "description": "Match team data",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "match_id": {
+                                        "type": "string",
+                                        "example": "1"
+                                    },
+                                    "team_id": {
+                                        "type": "string",
+                                        "example": "1"
+                                    },
+                                    "role": {
+                                        "type": "string",
+                                        "example": "home"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "match_id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "team_id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "role": {
+                                            "type": "string",
+                                            "example": "home"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The match_id field is required."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The match_id field is required."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/match-teams/{id}": {
+            "get": {
+                "tags": [
+                    "Match-teams"
+                ],
+                "summary": "Get a match team",
+                "operationId": "0307f163f91c0c0a8366b545686d905a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The match team ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "match_id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "team_id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "role": {
+                                            "type": "string",
+                                            "example": "home"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Match team not found."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid ID provided, use a valid UUID."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Match-teams"
+                ],
+                "summary": "Update a match team",
+                "operationId": "7f4bba183fb2fff7c1b317620b2a4dde",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The match team ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Match team data",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "match_id": {
+                                        "type": "string",
+                                        "example": "1"
+                                    },
+                                    "team_id": {
+                                        "type": "string",
+                                        "example": "1"
+                                    },
+                                    "role": {
+                                        "type": "string",
+                                        "example": "home"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "match_id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "team_id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "role": {
+                                            "type": "string",
+                                            "example": "home"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Match team not found."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid ID provided, use a valid UUID."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Match-teams"
+                ],
+                "summary": "delete a match team",
+                "operationId": "2e91b4c43a3f38e112036d80bdffa7d7",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The match team ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Match team not found."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid ID provided, use a valid UUID."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/players": {
             "get": {
                 "tags": [
@@ -1752,6 +2584,12 @@
     "tags": [
         {
             "name": "Averages"
+        },
+        {
+            "name": "Matches"
+        },
+        {
+            "name": "Match-teams"
         },
         {
             "name": "Players"
