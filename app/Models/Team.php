@@ -17,4 +17,9 @@ class Team extends Model
     {
         return $this->hasMany(Player::class);
     }
+
+    public function matches(): HasMany
+    {
+        return $this->hasMany(MatchTeam::class, 'team_id');
+    }
 }

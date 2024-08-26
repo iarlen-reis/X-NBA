@@ -11,4 +11,14 @@ class Matche extends Model
     use HasFactory, HasUuids;
 
     public $guarded = [];
+
+    public function teams()
+    {
+        return $this->belongsToMany(Team::class);
+    }
+
+    public function matchesTeams()
+    {
+        return $this->hasMany(MatchTeam::class, 'match_id');
+    }
 }
