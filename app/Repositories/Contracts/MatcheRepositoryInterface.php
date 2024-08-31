@@ -4,7 +4,7 @@ namespace App\Repositories\Contracts;
 
 interface MatcheRepositoryInterface
 {
-    public function index();
+    public function index(string $slug);
 
     public function show($id);
 

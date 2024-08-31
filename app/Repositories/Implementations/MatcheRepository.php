@@ -7,9 +7,16 @@ use App\Repositories\Contracts\MatcheRepositoryInterface;
 
 class MatcheRepository implements MatcheRepositoryInterface
 {
-    public function index()
+    public function index(string $slug)
     {
-        return Matche::all()->load(['matchesTeams.team']);
+        if (!$slug) {
+            return Matche::with('matchesTeams.team')->get();
+        }
+
+        return Matche::with('matchesTeams.team')
+            ->whereHas('matchesTeams.team', function ($query) use ($slug) {
+                $query->where('slug', $slug);
+            })->get();
     }
 
     public function show($id)

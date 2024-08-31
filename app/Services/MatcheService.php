@@ -4,17 +4,18 @@ namespace App\Services;
 
 use App\Repositories\Contracts\MatcheRepositoryInterface;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Str;
 
 class MatcheService
 {
-    public function __construct(private MatcheRepositoryInterface $repository)
-    {
-    }
+    public function __construct(private MatcheRepositoryInterface $repository) {}
 
-    public function index()
+    public function index(HttpRequest $request)
     {
-        $matches = $this->repository->index();
+        $slug = $request->query('slug') ?? '';
+
+        $matches = $this->repository->index($slug);
 
         return response()->json($matches);
     }

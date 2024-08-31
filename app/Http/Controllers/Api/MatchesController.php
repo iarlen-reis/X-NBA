@@ -43,7 +43,7 @@ class MatchesController extends Controller
      */
     public function index(Request $request)
     {
-        return $this->matcheService->index();
+        return $this->matcheService->index($request);
     }
 
     /**
