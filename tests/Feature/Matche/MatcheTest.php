@@ -3,8 +3,9 @@
 namespace Tests\Feature\Matche;
 
 use App\Models\Matche;
+use App\Models\MatchTeam;
+use App\Models\Team;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
@@ -32,6 +33,35 @@ class MatcheTest extends TestCase
                 $json->whereType('matches_teams', 'array');
             });
         });
+    }
+
+    public function test_index_matche_endpoint_with_slug(): void
+    {
+        $team = Team::factory()->create([
+            'name' => 'Miami Heat',
+            'slug' => 'miami-heat',
+        ]);
+
+        $match = Matche::factory()->create();
+        $match2 = Matche::factory()->create();
+        Matche::factory(8)->create();
+
+        MatchTeam::factory()->create([
+            'match_id' => $match->id,
+            'team_id' => $team->id,
+            'role' => 'home',
+        ]);
+
+        MatchTeam::factory()->create([
+            'match_id' => $match2->id,
+            'team_id' => $team->id,
+            'role' => 'home',
+        ]);
+
+        $response = $this->getJson('/api/matches?slug=miami-heat')
+            ->assertStatus(200);
+
+        $response->assertJsonCount(2);
     }
 
     public function test_show_matche_endpoint(): void
