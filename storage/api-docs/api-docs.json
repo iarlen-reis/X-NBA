@@ -583,6 +583,16 @@
                 ],
                 "summary": "Get all matches",
                 "operationId": "e5bd9d69cfc11a68d0e4da5e1eb82643",
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "query",
+                        "description": "Filter matches by slug of team",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -619,6 +629,83 @@
                                             "updated_at": {
                                                 "type": "string",
                                                 "example": "2023-01-01T00:00:00.000000Z"
+                                            },
+                                            "matches_teams": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "string",
+                                                            "example": "1"
+                                                        },
+                                                        "match_id": {
+                                                            "type": "string",
+                                                            "example": "1"
+                                                        },
+                                                        "team_id": {
+                                                            "type": "string",
+                                                            "example": "1"
+                                                        },
+                                                        "role": {
+                                                            "type": "string",
+                                                            "example": "home"
+                                                        },
+                                                        "created_at": {
+                                                            "type": "string",
+                                                            "example": "2023-01-01T00:00:00.000000Z"
+                                                        },
+                                                        "updated_at": {
+                                                            "type": "string",
+                                                            "example": "2023-01-01T00:00:00.000000Z"
+                                                        },
+                                                        "team": {
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "string",
+                                                                    "example": "1"
+                                                                },
+                                                                "name": {
+                                                                    "type": "string",
+                                                                    "example": "Los Angeles Lakers"
+                                                                },
+                                                                "slug": {
+                                                                    "type": "string",
+                                                                    "example": "los-angeles-lakers"
+                                                                },
+                                                                "stadium": {
+                                                                    "type": "string",
+                                                                    "example": "Crypto Arena"
+                                                                },
+                                                                "league": {
+                                                                    "type": "string",
+                                                                    "example": "NBA"
+                                                                },
+                                                                "city": {
+                                                                    "type": "string",
+                                                                    "example": "Los angeles"
+                                                                },
+                                                                "country": {
+                                                                    "type": "string",
+                                                                    "example": "USA"
+                                                                },
+                                                                "coach": {
+                                                                    "type": "string",
+                                                                    "example": "Darvin Ham"
+                                                                },
+                                                                "created_at": {
+                                                                    "type": "string",
+                                                                    "example": "2023-01-01T00:00:00.000000Z"
+                                                                },
+                                                                "updated_at": {
+                                                                    "type": "string",
+                                                                    "example": "2023-01-01T00:00:00.000000Z"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
                                             }
                                         },
                                         "type": "object"
@@ -787,6 +874,83 @@
                                         "updated_at": {
                                             "type": "string",
                                             "example": "2023-01-01T00:00:00.000000Z"
+                                        },
+                                        "matches_teams": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "example": "1"
+                                                    },
+                                                    "match_id": {
+                                                        "type": "string",
+                                                        "example": "1"
+                                                    },
+                                                    "team_id": {
+                                                        "type": "string",
+                                                        "example": "1"
+                                                    },
+                                                    "role": {
+                                                        "type": "string",
+                                                        "example": "home"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2023-01-01T00:00:00.000000Z"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2023-01-01T00:00:00.000000Z"
+                                                    },
+                                                    "team": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "string",
+                                                                "example": "1"
+                                                            },
+                                                            "name": {
+                                                                "type": "string",
+                                                                "example": "Boston Celtics"
+                                                            },
+                                                            "slug": {
+                                                                "type": "string",
+                                                                "example": "boston-celtics"
+                                                            },
+                                                            "stadium": {
+                                                                "type": "string",
+                                                                "example": "TD Garden"
+                                                            },
+                                                            "league": {
+                                                                "type": "string",
+                                                                "example": "NBA"
+                                                            },
+                                                            "city": {
+                                                                "type": "string",
+                                                                "example": "Boston"
+                                                            },
+                                                            "country": {
+                                                                "type": "string",
+                                                                "example": "USA"
+                                                            },
+                                                            "coach": {
+                                                                "type": "string",
+                                                                "example": "Joe Mazzulla"
+                                                            },
+                                                            "created_at": {
+                                                                "type": "string",
+                                                                "example": "2023-01-01T00:00:00.000000Z"
+                                                            },
+                                                            "updated_at": {
+                                                                "type": "string",
+                                                                "example": "2023-01-01T00:00:00.000000Z"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
                                         }
                                     },
                                     "type": "object"

@@ -22,6 +22,14 @@ class MatchesController extends Controller
      *     path="/api/matches",
      *     tags={"Matches"},
      *     summary="Get all matches",
+     *     @OA\Parameter(
+     *         name="slug",
+     *         in="query",
+     *         description="Filter matches by slug of team",
+     *         @OA\Schema(
+     *             type="string",
+     *         )
+     *     ),
      *     @OA\Response(
      *         response="200",
      *         description="Success",
@@ -35,7 +43,30 @@ class MatchesController extends Controller
      *                  @OA\Property(property="stadium", type="string", example="TD Garden"),
      *                  @OA\Property(property="league", type="string", example="NBA"),
      *                  @OA\Property(property="created_at", type="string", example="2023-01-01T00:00:00.000000Z"),
-     *                  @OA\Property(property="updated_at", type="string", example="2023-01-01T00:00:00.000000Z")
+     *                  @OA\Property(property="updated_at", type="string", example="2023-01-01T00:00:00.000000Z"),
+     *                  @OA\Property(property="matches_teams", type="array",
+     *                      @OA\Items(
+     *                          type="object",
+     *                          @OA\Property(property="id", type="string", example="1"),
+     *                          @OA\Property(property="match_id", type="string", example="1"),
+     *                          @OA\Property(property="team_id", type="string", example="1"),
+     *                          @OA\Property(property="role", type="string", example="home"),
+     *                          @OA\Property(property="created_at", type="string", example="2023-01-01T00:00:00.000000Z"),
+     *                          @OA\Property(property="updated_at", type="string", example="2023-01-01T00:00:00.000000Z"),
+     *                          @OA\Property(property="team", type="object",
+     *                              @OA\Property(property="id", type="string", example="1"),
+     *                              @OA\Property(property="name", type="string", example="Los Angeles Lakers"),
+     *                              @OA\Property(property="slug", type="string", example="los-angeles-lakers"),
+     *                              @OA\Property(property="stadium", type="string", example="Crypto Arena"),
+     *                              @OA\Property(property="league", type="string", example="NBA"),
+     *                              @OA\Property(property="city", type="string", example="Los angeles"),
+     *                              @OA\Property(property="country", type="string", example="USA"),
+     *                              @OA\Property(property="coach", type="string", example="Darvin Ham"),
+     *                              @OA\Property(property="created_at", type="string", example="2023-01-01T00:00:00.000000Z"),
+     *                              @OA\Property(property="updated_at", type="string", example="2023-01-01T00:00:00.000000Z"),
+     *                          )
+     *                      ),
+     *                  ),
      *              )
      *         )
      *     ),
@@ -71,7 +102,30 @@ class MatchesController extends Controller
      *              @OA\Property(property="stadium", type="string", example="TD Garden"),
      *              @OA\Property(property="league", type="string", example="NBA"),
      *              @OA\Property(property="created_at", type="string", example="2023-01-01T00:00:00.000000Z"),
-     *              @OA\Property(property="updated_at", type="string", example="2023-01-01T00:00:00.000000Z")
+     *              @OA\Property(property="updated_at", type="string", example="2023-01-01T00:00:00.000000Z"),
+     *              @OA\Property(property="matches_teams", type="array",
+     *                      @OA\Items(
+     *                          type="object",
+     *                          @OA\Property(property="id", type="string", example="1"),
+     *                          @OA\Property(property="match_id", type="string", example="1"),
+     *                          @OA\Property(property="team_id", type="string", example="1"),
+     *                          @OA\Property(property="role", type="string", example="home"),
+     *                          @OA\Property(property="created_at", type="string", example="2023-01-01T00:00:00.000000Z"),
+     *                          @OA\Property(property="updated_at", type="string", example="2023-01-01T00:00:00.000000Z"),
+     *                          @OA\Property(property="team", type="object",
+     *                              @OA\Property(property="id", type="string", example="1"),
+     *                              @OA\Property(property="name", type="string", example="Boston Celtics"),
+     *                              @OA\Property(property="slug", type="string", example="boston-celtics"),
+     *                              @OA\Property(property="stadium", type="string", example="TD Garden"),
+     *                              @OA\Property(property="league", type="string", example="NBA"),
+     *                              @OA\Property(property="city", type="string", example="Boston"),
+     *                              @OA\Property(property="country", type="string", example="USA"),
+     *                              @OA\Property(property="coach", type="string", example="Joe Mazzulla"),
+     *                              @OA\Property(property="created_at", type="string", example="2023-01-01T00:00:00.000000Z"),
+     *                              @OA\Property(property="updated_at", type="string", example="2023-01-01T00:00:00.000000Z"),
+     *                          )
+     *                      ),
+     *                  ),
      *         )
      *     ),
      *     @OA\Response(
