@@ -2203,18 +2203,6 @@
                                             "league": {
                                                 "type": "string",
                                                 "example": "League 1"
-                                            },
-                                            "active": {
-                                                "type": "boolean",
-                                                "example": "true"
-                                            },
-                                            "created_at": {
-                                                "type": "string",
-                                                "example": "2023-01-01T00:00:00.000000Z"
-                                            },
-                                            "updated_at": {
-                                                "type": "string",
-                                                "example": "2023-01-01T00:00:00.000000Z"
                                             }
                                         },
                                         "type": "object"
@@ -2309,14 +2297,6 @@
                                         "league": {
                                             "type": "string",
                                             "example": "League 1"
-                                        },
-                                        "created_at": {
-                                            "type": "string",
-                                            "example": "2023-01-01T00:00:00.000000Z"
-                                        },
-                                        "updated_at": {
-                                            "type": "string",
-                                            "example": "2023-01-01T00:00:00.000000Z"
                                         }
                                     },
                                     "type": "object"
@@ -2411,66 +2391,6 @@
                                         "league": {
                                             "type": "string",
                                             "example": "League 1"
-                                        },
-                                        "active": {
-                                            "type": "boolean",
-                                            "example": "true"
-                                        },
-                                        "created_at": {
-                                            "type": "string",
-                                            "example": "2023-01-01T00:00:00.000000Z"
-                                        },
-                                        "updated_at": {
-                                            "type": "string",
-                                            "example": "2023-01-01T00:00:00.000000Z"
-                                        },
-                                        "players": {
-                                            "type": "array",
-                                            "items": {
-                                                "properties": {
-                                                    "id": {
-                                                        "type": "string",
-                                                        "example": "1"
-                                                    },
-                                                    "name": {
-                                                        "type": "string",
-                                                        "example": "Player 1"
-                                                    },
-                                                    "age": {
-                                                        "type": "integer",
-                                                        "example": "25"
-                                                    },
-                                                    "height": {
-                                                        "type": "integer",
-                                                        "example": "180"
-                                                    },
-                                                    "weight": {
-                                                        "type": "integer",
-                                                        "example": "80"
-                                                    },
-                                                    "position": {
-                                                        "type": "string",
-                                                        "example": "Center"
-                                                    },
-                                                    "league": {
-                                                        "type": "string",
-                                                        "example": "League 1"
-                                                    },
-                                                    "team_id": {
-                                                        "type": "string",
-                                                        "example": "1"
-                                                    },
-                                                    "created_at": {
-                                                        "type": "string",
-                                                        "example": "2023-01-01T00:00:00.000000Z"
-                                                    },
-                                                    "updated_at": {
-                                                        "type": "string",
-                                                        "example": "2023-01-01T00:00:00.000000Z"
-                                                    }
-                                                },
-                                                "type": "object"
-                                            }
                                         }
                                     },
                                     "type": "object"

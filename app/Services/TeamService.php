@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Http\Requests\Team\TeamRequest;
+use App\Http\Resources\TeamResource;
 use App\Repositories\Contracts\TeamRepositoryInterface;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -22,7 +24,7 @@ class TeamService
 
         $teams = $this->teamRepository->index($league);
 
-        return response()->json($teams);
+        return TeamResource::collection($teams);
     }
 
     public function show(string $id)
@@ -36,7 +38,7 @@ class TeamService
 
             $team = $this->teamRepository->show($id);
 
-            return response()->json($team);
+            return TeamResource::make($team);
         } catch (ModelNotFoundException $e) {
             return response()->json([
                 'message' => 'Team not found.',
@@ -44,14 +46,14 @@ class TeamService
         }
     }
 
-    public function store(Request $request)
+    public function store(TeamRequest $data)
     {
-        $team = $this->teamRepository->store($request->all());
+        $team = $this->teamRepository->store($data->toArray());
 
-        return response()->json($team, 201);
+        return response()->json(TeamResource::make($team), 201);
     }
 
-    public function update(Request $request, string $id)
+    public function update(TeamRequest $data, string $id)
     {
         try {
 
@@ -61,9 +63,9 @@ class TeamService
                 ], 400);
             }
 
-            $team = $this->teamRepository->update($id, $request->all());
+            $team = $this->teamRepository->update($id, $data->toArray());
 
-            return response()->json($team);
+            return response()->json(TeamResource::make($team));
         } catch (ModelNotFoundException $e) {
             return response()->json([
                 'message' => 'Team not found.',
