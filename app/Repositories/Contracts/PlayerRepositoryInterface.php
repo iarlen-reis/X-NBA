@@ -2,6 +2,8 @@
 
 namespace App\Repositories\Contracts;
 
+use App\Http\Requests\Player\PlayerResquest;
+
 interface PlayerRepositoryInterface
 {
     public function index(string $team);

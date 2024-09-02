@@ -4,7 +4,7 @@ namespace App\Http\Requests\Player;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePlayerRequest extends FormRequest
+class PlayerResquest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,7 +28,7 @@ class StorePlayerRequest extends FormRequest
             'weight' => 'required',
             'position' => 'required|string|max:255',
             'league' => 'required|string|max:255',
-            'team_id' => 'required|string|max:255',
+            'team_id' => 'required|string',
         ];
     }
 }

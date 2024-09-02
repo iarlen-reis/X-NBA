@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Player\PlayerResquest;
 use App\Http\Requests\Player\StorePlayerRequest;
 use App\Services\PlayerService;
 use Illuminate\Http\Request;
@@ -152,9 +153,11 @@ class PlayersController extends Controller
      *              @OA\Property(property="weight", type="integer", example="80"),
      *              @OA\Property(property="position", type="string", example="C"),
      *              @OA\Property(property="league", type="string", example="NBA"),
-     *              @OA\Property(property="team_id", type="string", example="1"),
-     *              @OA\Property(property="created_at", type="string", example="2023-01-01T00:00:00.000000Z"),
-     *              @OA\Property(property="updated_at", type="string", example="2023-01-01T00:00:00.000000Z")
+     *              @OA\Property(property="team", type="object",
+     *                  @OA\Property(property="id", type="string", example="1"),
+     *                  @OA\Property(property="name", type="string", example="Team 1"),
+     *                  @OA\Property(property="slug", type="string", example="team-1"),
+     *              )
      *         )
      *     ),
      *     @OA\Response(
@@ -173,7 +176,7 @@ class PlayersController extends Controller
      *      ),
      * )
      */
-    public function store(StorePlayerRequest $request)
+    public function store(PlayerResquest $request)
     {
         $request->validated();
 
@@ -219,10 +222,11 @@ class PlayersController extends Controller
      *              @OA\Property(property="weight", type="integer", example="80"),
      *              @OA\Property(property="position", type="string", example="C"),
      *              @OA\Property(property="league", type="string", example="NBA"),
-     *              @OA\Property(property="active", type="boolean", example="true"),
-     *              @OA\Property(property="team_id", type="string", example="1"),
-     *              @OA\Property(property="created_at", type="string", example="2023-01-01T00:00:00.000000Z"),
-     *              @OA\Property(property="updated_at", type="string", example="2023-01-01T00:00:00.000000Z")
+     *              @OA\Property(property="team", type="object",
+     *                  @OA\Property(property="id", type="string", example="1"),
+     *                  @OA\Property(property="name", type="string", example="Team 1"),
+     *                  @OA\Property(property="slug", type="string", example="team-1"),
+     *              )
      *         )
      *     ),
      *     @OA\Response(
@@ -243,7 +247,7 @@ class PlayersController extends Controller
      *     ),
      * )
      */
-    public function update(StorePlayerRequest $request, $id)
+    public function update(PlayerResquest $request, $id)
     {
         $request->validated();
 

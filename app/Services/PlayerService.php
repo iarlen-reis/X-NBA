@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Http\Requests\Player\PlayerResquest;
 use App\Http\Resources\PlayerResource;
+use App\Models\Player;
 use App\Repositories\Contracts\PlayerRepositoryInterface;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -45,14 +47,14 @@ class PlayerService
         }
     }
 
-    public function store(Request $request)
+    public function store(PlayerResquest $data)
     {
-        $player = $this->playerRepository->store($request->all());
+        $player = $this->playerRepository->store($data->toArray());
 
-        return response()->json($player, 201);
+        return response()->json(PlayerResource::make($player), 201);
     }
 
-    public function update(Request $request, $id)
+    public function update(PlayerResquest $data, $id)
     {
         try {
             if (!Str::isUuid($id)) {
@@ -61,9 +63,9 @@ class PlayerService
                 ], 400);
             }
 
-            $player = $this->playerRepository->update($request->all(), $id);
+            $player = $this->playerRepository->update($data->toArray(), $id);
 
-            return response()->json($player, 200);
+            return response()->json(PlayerResource::make($player), 200);
         } catch (ModelNotFoundException $e) {
             return response()->json(['message' => 'Player not found.'], 404);
         }
