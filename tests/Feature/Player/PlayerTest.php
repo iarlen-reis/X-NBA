@@ -34,21 +34,18 @@ class PlayerTest extends TestCase
                     ->whereType('weight', 'integer')
                     ->whereType('position', 'string')
                     ->whereType('league', 'string')
-                    ->whereType('team_id', 'string')
-                    ->whereType('active', 'boolean')
                     ->whereType('average', 'array')
-                    ->whereType('created_at', 'string')
-                    ->whereType('updated_at', 'string')
                     ->has('average', function ($json) {
-                        $json->whereType('id', 'string')
-                            ->whereType('pts', 'integer')
+                        $json->whereType('pts', 'integer')
                             ->whereType('reb', 'integer')
                             ->whereType('ast', 'integer')
                             ->whereType('stl', 'integer')
-                            ->whereType('blk', 'integer')
-                            ->whereType('player_id', 'string')
-                            ->whereType('created_at', 'string')
-                            ->whereType('updated_at', 'string');
+                            ->whereType('blk', 'integer');
+                    })
+                    ->has('team', function ($json) {
+                        $json->whereType('id', 'string')
+                            ->whereType('name', 'string')
+                            ->whereType('slug', 'string');
                     });
             });
         });
@@ -69,10 +66,18 @@ class PlayerTest extends TestCase
             'weight' => $player->weight,
             'position' => $player->position,
             'league' => $player->league,
-            'team_id' => $player->team_id,
-            'active' => $player->active,
-            'team' => $player->team->toArray(),
-            'average' => $player->average->toArray(),
+            'team' => [
+                'id' => $player->team->id,
+                'name' => $player->team->name,
+                'slug' => $player->team->slug,
+            ],
+            'average' => [
+                'pts' => $player->average['pts'],
+                'reb' => $player->average['reb'],
+                'ast' => $player->average['ast'],
+                'stl' => $player->average['stl'],
+                'blk' => $player->average['blk'],
+            ],
         ]);
     }
 
@@ -117,8 +122,12 @@ class PlayerTest extends TestCase
             'height' => $player->height,
             'weight' => $player->weight,
             'position' => $player->position,
-            'team_id' => $player->team_id,
             'league' => $player->league,
+            'team' => [
+                'id' => $player->team->id,
+                'name' => $player->team->name,
+                'slug' => $player->team->slug,
+            ],
         ]);
 
         $response->assertJson(function (AssertableJson $json) use ($response) {
@@ -129,10 +138,8 @@ class PlayerTest extends TestCase
                 'height',
                 'weight',
                 'position',
-                'team_id',
                 'league',
-                'created_at',
-                'updated_at'
+                'team',
             ]);
         });
     }
@@ -158,9 +165,12 @@ class PlayerTest extends TestCase
             'height' => 180,
             'weight' => 80,
             'position' => 'Center',
-            'team_id' => $player->team_id,
             'league' => $player->league,
-            'active' => $player->active,
+            'team' => [
+                'id' => $player->team->id,
+                'name' => $player->team->name,
+                'slug' => $player->team->slug,
+            ]
         ]);
 
         $response->assertJson(function (AssertableJson $json) use ($response) {
@@ -171,11 +181,8 @@ class PlayerTest extends TestCase
                 'height',
                 'weight',
                 'position',
-                'team_id',
                 'league',
-                'active',
-                'created_at',
-                'updated_at'
+                'team',
             ]);
         });
     }
