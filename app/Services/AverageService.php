@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Http\Requests\Average\AverageRequest;
+use App\Http\Resources\AverageResource;
 use App\Repositories\Implementations\AverageRepository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -18,7 +20,7 @@ class AverageService
     {
         $avareges = $this->averageRepository->index();
 
-        return response()->json($avareges);
+        return AverageResource::collection($avareges);
     }
 
     public function show($id)
@@ -31,21 +33,21 @@ class AverageService
 
             $average = $this->averageRepository->show($id);
 
-            return response()->json($average);
+            return AverageResource::make($average);
         } catch (ModelNotFoundException $e) {
             return response()
                 ->json(['message' => 'Average not found.'], 404);
         }
     }
 
-    public function store(Request $request)
+    public function store(AverageRequest $data)
     {
-        $average = $this->averageRepository->store($request->all());
+        $average = $this->averageRepository->store($data->toArray());
 
-        return response()->json($average, 201);
+        return response()->json(AverageResource::make($average), 201);
     }
 
-    public function update(Request $request, $id)
+    public function update(AverageRequest $data, $id)
     {
         try {
             if (!Str::isUuid($id)) {
@@ -53,9 +55,9 @@ class AverageService
                     ->json(['message' => 'Invalid ID provided, use a valid UUID.'], 400);
             }
 
-            $average = $this->averageRepository->update($request->all(), $id);
+            $average = $this->averageRepository->update($data->toArray(), $id);
 
-            return response()->json($average);
+            return AverageResource::make($average);
         } catch (ModelNotFoundException $e) {
             return response()
                 ->json(['message' => 'Average not found.'], 404);

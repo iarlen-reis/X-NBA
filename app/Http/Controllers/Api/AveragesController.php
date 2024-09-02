@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Average\AverageRequest;
 use App\Services\AverageService;
 use Illuminate\Http\Request;
 
@@ -28,27 +29,19 @@ class AveragesController extends Controller
      *             type="array",
      *             @OA\Items(
      *                 type="object",
-     *                 @OA\Property(property="id", type="string", example="1"),
-     *                 @OA\Property(property="pts", type="integer", example="25"),
-     *                 @OA\Property(property="reb", type="integer", example="25"),
-     *                 @OA\Property(property="ast", type="integer", example="25"),
-     *                 @OA\Property(property="stl", type="integer", example="25"),
-     *                 @OA\Property(property="blk", type="integer", example="25"),
-     *                 @OA\Property(property="player_id", type="string", example="1"),
-     *                 @OA\Property(property="created_at", type="string", example="2023-01-01T00:00:00.000000Z"),
-     *                 @OA\Property(property="updated_at", type="string", example="2023-01-01T00:00:00.000000Z"),
      *                 @OA\Property(property="player", type="object",
      *                     @OA\Property(property="id", type="string", example="1"),
      *                     @OA\Property(property="name", type="string", example="Player 1"),
-     *                     @OA\Property(property="age", type="integer", example="25"),
-     *                     @OA\Property(property="height", type="integer", example="180"),
-     *                     @OA\Property(property="weight", type="integer", example="80"),
-     *                     @OA\Property(property="position", type="string", example="Center"),
+     *                     @OA\Property(property="position", type="string", example="C"),
      *                     @OA\Property(property="league", type="string", example="League 1"),
-     *                     @OA\Property(property="team_id", type="string", example="1"),
-     *                     @OA\Property(property="active", type="boolean", example="true"),
-     *                     @OA\Property(property="created_at", type="string", example="2023-01-01T00:00:00.000000Z"),
-     *                     @OA\Property(property="updated_at", type="string", example="2023-01-01T00:00:00.000000Z")
+     *                 ),
+     *                 @OA\Property(property="average", type="object",
+     *                     @OA\Property(property="id", type="string", example="1"),
+     *                     @OA\Property(property="pts", type="integer", example="25"),
+     *                     @OA\Property(property="reb", type="integer", example="25"),
+     *                     @OA\Property(property="ast", type="integer", example="25"),
+     *                     @OA\Property(property="stl", type="integer", example="25"),
+     *                     @OA\Property(property="blk", type="integer", example="25"),
      *                 )
      *             )
      *         )
@@ -79,27 +72,19 @@ class AveragesController extends Controller
      *         description="Success",
      *         @OA\JsonContent(
      *              type="object",
-     *              @OA\Property(property="id", type="string", example="1"),
-     *              @OA\Property(property="pts", type="integer", example="25"),
-     *              @OA\Property(property="reb", type="integer", example="25"),
-     *              @OA\Property(property="ast", type="integer", example="25"),
-     *              @OA\Property(property="stl", type="integer", example="25"),
-     *              @OA\Property(property="blk", type="integer", example="25"),
-     *              @OA\Property(property="player_id", type="string", example="1"),
-     *              @OA\Property(property="created_at", type="string", example="2023-01-01T00:00:00.000000Z"),
-     *              @OA\Property(property="updated_at", type="string", example="2023-01-01T00:00:00.000000Z"),
      *              @OA\Property(property="player", type="object",
      *                  @OA\Property(property="id", type="string", example="1"),
      *                  @OA\Property(property="name", type="string", example="Player 1"),
-     *                  @OA\Property(property="age", type="integer", example="25"),
-     *                  @OA\Property(property="height", type="integer", example="180"),
-     *                  @OA\Property(property="weight", type="integer", example="80"),
-     *                  @OA\Property(property="position", type="string", example="Center"),
+     *                  @OA\Property(property="position", type="string", example="C"),
      *                  @OA\Property(property="league", type="string", example="League 1"),
-     *                  @OA\Property(property="team_id", type="string", example="1"),
-     *                  @OA\Property(property="active", type="boolean", example="true"),
-     *                  @OA\Property(property="created_at", type="string", example="2023-01-01T00:00:00.000000Z"),
-     *                  @OA\Property(property="updated_at", type="string", example="2023-01-01T00:00:00.000000Z")
+     *              ),
+     *              @OA\Property(property="average", type="object",
+     *                  @OA\Property(property="id", type="string", example="1"),
+     *                  @OA\Property(property="pts", type="integer", example="25"),
+     *                  @OA\Property(property="reb", type="integer", example="25"),
+     *                  @OA\Property(property="ast", type="integer", example="25"),
+     *                  @OA\Property(property="stl", type="integer", example="25"),
+     *                  @OA\Property(property="blk", type="integer", example="25"),
      *              )
      *         )
      *     ),
@@ -128,7 +113,7 @@ class AveragesController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/averages",
+     *     path="/api/average",
      *     tags={"Averages"},
      *     summary="Create an average",
      *     @OA\RequestBody(
@@ -137,9 +122,9 @@ class AveragesController extends Controller
      *              type="object",
      *              @OA\Property(property="pts", type="interger", example=25),
      *              @OA\Property(property="reb", type="interger", example=25),
-     *              @OA\Property(property="ast", type="interger", example=25),
-     *              @OA\Property(property="stl", type="interger", example=25),
-     *              @OA\Property(property="blk", type="interger", example=25),
+     *              @OA\Property(property="ast", type="interger", example=180),
+     *              @OA\Property(property="stl", type="interger", example=80),
+     *              @OA\Property(property="blk", type="string", example="C"),
      *              @OA\Property(property="player_id", type="string", example="1")
      *         )
      *     ),
@@ -148,15 +133,20 @@ class AveragesController extends Controller
      *         description="Success",
      *         @OA\JsonContent(
      *              type="object",
-     *              @OA\Property(property="id", type="string", example="1"),
-     *              @OA\Property(property="pts", type="integer", example="25"),
-     *              @OA\Property(property="reb", type="integer", example="25"),
-     *              @OA\Property(property="ast", type="integer", example="25"),
-     *              @OA\Property(property="stl", type="integer", example="25"),
-     *              @OA\Property(property="blk", type="integer", example="25"),
-     *              @OA\Property(property="player_id", type="string", example="1"),
-     *              @OA\Property(property="created_at", type="string", example="2023-01-01T00:00:00.000000Z"),
-     *              @OA\Property(property="updated_at", type="string", example="2023-01-01T00:00:00.000000Z")
+     *              @OA\Property(property="player", type="object",
+     *                  @OA\Property(property="id", type="string", example="1"),
+     *                  @OA\Property(property="name", type="string", example="Player 1"),
+     *                  @OA\Property(property="position", type="string", example="C"),
+     *                  @OA\Property(property="league", type="string", example="NBA"),
+     *              ),
+     *              @OA\Property(property="average", type="object",
+     *                  @OA\Property(property="id", type="string", example="1"),
+     *                  @OA\Property(property="pts", type="interger", example="10"),
+     *                  @OA\Property(property="reb", type="interger", example="15"),
+     *                  @OA\Property(property="ast", type="interger", example="15"),
+     *                  @OA\Property(property="stl", type="interger", example="15"),
+     *                  @OA\Property(property="blk", type="interger", example="15"),
+     *              )
      *         )
      *     ),
      *     @OA\Response(
@@ -175,8 +165,10 @@ class AveragesController extends Controller
      *      ),
      * )
      */
-    public function store(Request $request)
+    public function store(AverageRequest $request)
     {
+        $request->validated();
+
         return $this->averageService->store($request);
     }
 
@@ -202,7 +194,8 @@ class AveragesController extends Controller
      *              @OA\Property(property="reb", type="interger", example=25),
      *              @OA\Property(property="ast", type="interger", example=25),
      *              @OA\Property(property="stl", type="interger", example=25),
-     *              @OA\Property(property="blk", type="interger", example=25)
+     *              @OA\Property(property="blk", type="interger", example=25),
+     *              @OA\Property(property="player_id", type="string", example="1")
      *         )
      *     ),
      *     @OA\Response(
@@ -210,15 +203,20 @@ class AveragesController extends Controller
      *         description="Success",
      *         @OA\JsonContent(
      *              type="object",
-     *              @OA\Property(property="id", type="string", example="1"),
-     *              @OA\Property(property="pts", type="integer", example="25"),
-     *              @OA\Property(property="reb", type="integer", example="25"),
-     *              @OA\Property(property="ast", type="integer", example="25"),
-     *              @OA\Property(property="stl", type="integer", example="25"),
-     *              @OA\Property(property="blk", type="integer", example="25"),
-     *              @OA\Property(property="player_id", type="string", example="1"),
-     *              @OA\Property(property="created_at", type="string", example="2023-01-01T00:00:00.000000Z"),
-     *              @OA\Property(property="updated_at", type="string", example="2023-01-01T00:00:00.000000Z")
+     *              @OA\Property(property="player", type="object",
+     *                  @OA\Property(property="id", type="string", example="1"),
+     *                  @OA\Property(property="name", type="string", example="Player 1"),
+     *                  @OA\Property(property="position", type="string", example="C"),
+     *                  @OA\Property(property="league", type="string", example="League 1"),
+     *              ),
+     *              @OA\Property(property="average", type="object",
+     *                  @OA\Property(property="id", type="string", example="1"),
+     *                  @OA\Property(property="pts", type="integer", example="25"),
+     *                  @OA\Property(property="reb", type="integer", example="25"),
+     *                  @OA\Property(property="ast", type="integer", example="25"),
+     *                  @OA\Property(property="stl", type="integer", example="25"),
+     *                  @OA\Property(property="blk", type="integer", example="25"),
+     *              )
      *         )
      *     ),
      *     @OA\Response(
@@ -237,9 +235,23 @@ class AveragesController extends Controller
      *              @OA\Property(property="message", type="string", example="Invalid ID provided, use a valid UUID.")
      *         )
      *     ),
+     *    @OA\Response(
+     *         response="422",
+     *         description="Unprocessable Entity",
+     *         @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(property="message", type="string", example="The pts field is required."),
+     *              @OA\Property(
+     *                  property="errors",
+     *                  type="object",
+     *                  @OA\Property(property="pts", type="array", @OA\Items(type="string", example="The pts field is required."))
+     *              ),
+     *           )
+     *         )
+     *      ),
      * )
      */
-    public function update(Request $request, $id)
+    public function update(AverageRequest $request, $id)
     {
         return $this->averageService->update($request, $id);
     }
