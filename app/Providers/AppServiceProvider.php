@@ -12,6 +12,7 @@ use App\Repositories\Implementations\MatcheRepository;
 use App\Repositories\Implementations\MatchTeamRepository;
 use App\Repositories\Implementations\PlayerRepository;
 use App\Repositories\Implementations\TeamRepository;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
@@ -53,6 +54,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        JsonResource::withoutWrapping();
+
         if (env('APP_ENV') !== 'local') {
             URL::forceScheme('https');
         }
