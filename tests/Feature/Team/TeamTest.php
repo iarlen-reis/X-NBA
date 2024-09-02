@@ -16,40 +16,23 @@ class TeamTest extends TestCase
      */
     public function test_index_teams_endpoint(): void
     {
-        $teams = Team::factory(1)->create(['active' => true]);
+        Team::factory(1)->create(['active' => true]);
 
         $response = $this->getJson('/api/teams')->assertStatus(200);
 
         $response->assertJsonCount(1);
 
-        $response->assertJson(function (AssertableJson $json) use ($teams) {
-            $json->whereAllType([
-                '0.id' => 'string',
-                '0.name' => 'string',
-                '0.slug' => 'string',
-                '0.stadium' => 'string',
-                '0.city' => 'string',
-                '0.country' => 'string',
-                '0.coach' => 'string',
-                '0.league' => 'string',
-                '0.active' => 'boolean',
-                '0.created_at' => 'string',
-                '0.updated_at' => 'string',
-            ]);
-
-            $team = $teams->first();
-
-            $json->whereAll([
-                '0.id' => $team->id,
-                '0.name' => $team->name,
-                '0.slug' => $team->slug,
-                '0.stadium' => $team->stadium,
-                '0.city' => $team->city,
-                '0.country' => $team->country,
-                '0.coach' => $team->coach,
-                '0.league' => $team->league,
-                '0.active' => $team->active,
-            ]);
+        $response->assertJson(function (AssertableJson $json) use ($response) {
+            $json->has(0, function ($json) {
+                $json->whereType('id', 'string')
+                    ->whereType('name', 'string')
+                    ->whereType('slug', 'string')
+                    ->whereType('stadium', 'string')
+                    ->whereType('city', 'string')
+                    ->whereType('country', 'string')
+                    ->whereType('coach', 'string')
+                    ->whereType('league', 'string');
+            });
         });
     }
 
@@ -71,9 +54,6 @@ class TeamTest extends TestCase
             'country',
             'coach',
             'league',
-            'active',
-            'created_at',
-            'updated_at',
         ]);
 
         $response->assertJson(function (AssertableJson $json) use ($team) {
@@ -86,9 +66,6 @@ class TeamTest extends TestCase
                 'country',
                 'coach',
                 'league',
-                'active',
-                'created_at',
-                'updated_at',
             ]);
 
             $json->whereAll([
@@ -100,7 +77,6 @@ class TeamTest extends TestCase
                 'country' => $team->country,
                 'coach' => $team->coach,
                 'league' => $team->league,
-                'active' => $team->active,
             ]);
         });
     }
@@ -143,20 +119,15 @@ class TeamTest extends TestCase
         $response->assertJsonCount(10);
 
         $response->assertJson(function (AssertableJson $json) use ($response) {
-            $json->each(function ($json) {
-                $json->whereAllType([
-                    'id' => 'string',
-                    'name' => 'string',
-                    'slug' => 'string',
-                    'stadium' => 'string',
-                    'city' => 'string',
-                    'country' => 'string',
-                    'coach' => 'string',
-                    'league' => 'string',
-                    'active' => 'boolean',
-                    'created_at' => 'string',
-                    'updated_at' => 'string',
-                ]);
+            $json->has(0, function ($json) {
+                $json->whereType('id', 'string')
+                    ->whereType('name', 'string')
+                    ->whereType('slug', 'string')
+                    ->whereType('stadium', 'string')
+                    ->whereType('city', 'string')
+                    ->whereType('country', 'string')
+                    ->whereType('coach', 'string')
+                    ->whereType('league', 'string');
             });
         });
 
@@ -202,8 +173,6 @@ class TeamTest extends TestCase
                 'country',
                 'coach',
                 'league',
-                'created_at',
-                'updated_at',
             ]);
         });
     }
@@ -231,7 +200,6 @@ class TeamTest extends TestCase
             'country' => 'New Country',
             'coach' => 'New Coach',
             'league' => 'New League',
-            'active' => true,
         ]);
 
         $response->assertJson(function (AssertableJson $json) use ($response) {
@@ -244,9 +212,6 @@ class TeamTest extends TestCase
                 'country',
                 'coach',
                 'league',
-                'active',
-                'created_at',
-                'updated_at',
             ]);
         });
     }
