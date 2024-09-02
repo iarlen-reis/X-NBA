@@ -4,7 +4,7 @@ namespace App\Repositories\Contracts;
 
 interface PlayerRepositoryInterface
 {
-    public function index();
+    public function index(string $team);
 
     public function show($id);
 

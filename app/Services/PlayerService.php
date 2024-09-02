@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Resources\PlayerResource;
 use App\Repositories\Contracts\PlayerRepositoryInterface;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -18,11 +19,13 @@ class PlayerService
         $this->playerRepository = $playerRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $players = $this->playerRepository->index();
+        $team = $request->query('team') ?? '';
 
-        return response()->json($players);
+        $players = $this->playerRepository->index($team);
+
+        return PlayerResource::collection($players);
     }
 
     public function show($id)
@@ -36,7 +39,7 @@ class PlayerService
 
             $player = $this->playerRepository->show($id);
 
-            return response()->json($player);
+            return PlayerResource::make($player);
         } catch (ModelNotFoundException $e) {
             return response()->json(['message' => 'Player not found.'], 404);
         }

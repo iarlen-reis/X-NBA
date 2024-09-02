@@ -7,9 +7,15 @@ use App\Repositories\Contracts\PlayerRepositoryInterface;
 
 class PlayerRepository implements PlayerRepositoryInterface
 {
-    public function index()
+    public function index(string $team)
     {
-        return Player::all()->load('average');
+        if (!$team) {
+            return Player::with('average')->get();
+        }
+
+        return Player::with(['team'])->whereHas('team', function ($query) use ($team) {
+            return $query->where('slug', $team);
+        })->with('average')->get();
     }
 
     public function show($id)

@@ -35,12 +35,20 @@ class PlayersController extends Controller
      *                  @OA\Property(property="age", type="integer", example="25"),
      *                  @OA\Property(property="height", type="integer", example="180"),
      *                  @OA\Property(property="weight", type="integer", example="80"),
-     *                  @OA\Property(property="position", type="string", example="Center"),
+     *                  @OA\Property(property="position", type="string", example="C"),
      *                  @OA\Property(property="league", type="string", example="League 1"),
-     *                  @OA\Property(property="active", type="boolean", example="true"),
-     *                  @OA\Property(property="team_id", type="string", example="1"),
-     *                  @OA\Property(property="created_at", type="string", example="2023-01-01T00:00:00.000000Z"),
-     *                  @OA\Property(property="updated_at", type="string", example="2023-01-01T00:00:00.000000Z")
+     *                  @OA\Property(property="average", type="object",
+     *                      @OA\Property(property="pts", type="string", example="10"),
+     *                      @OA\Property(property="reb", type="string", example="10"),
+     *                      @OA\Property(property="ast", type="string", example="10"),
+     *                      @OA\Property(property="stl", type="string", example="10"),
+     *                      @OA\Property(property="blk", type="string", example="10"),
+     *                  ),
+     *                  @OA\Property(property="team", type="object",
+     *                      @OA\Property(property="id", type="string", example="1"),
+     *                      @OA\Property(property="name", type="string", example="Team 1"),
+     *                      @OA\Property(property="slug", type="string", example="team-1"),
+     *                  ),
      *              )
      *         )
      *     ),
@@ -48,7 +56,7 @@ class PlayersController extends Controller
      */
     public function index(Request $request)
     {
-        return $this->playerService->index();
+        return $this->playerService->index($request);
     }
 
     /**
@@ -75,24 +83,19 @@ class PlayersController extends Controller
      *              @OA\Property(property="age", type="integer", example="25"),
      *              @OA\Property(property="height", type="integer", example="180"),
      *              @OA\Property(property="weight", type="integer", example="80"),
-     *              @OA\Property(property="position", type="string", example="Center"),
+     *              @OA\Property(property="position", type="string", example="C"),
      *              @OA\Property(property="league", type="string", example="League 1"),
-     *              @OA\Property(property="team_id", type="string", example="1"),
-     *              @OA\Property(property="active", type="boolean", example="true"),
-     *              @OA\Property(property="created_at", type="string", example="2023-01-01T00:00:00.000000Z"),
-     *              @OA\Property(property="updated_at", type="string", example="2023-01-01T00:00:00.000000Z"),
+     *              @OA\Property(property="average", type="object",
+     *                  @OA\Property(property="pts", type="string", example="10"),
+     *                  @OA\Property(property="reb", type="string", example="10"),
+     *                  @OA\Property(property="ast", type="string", example="10"),
+     *                  @OA\Property(property="stl", type="string", example="10"),
+     *                  @OA\Property(property="blk", type="string", example="10"),
+     *              ),
      *              @OA\Property(property="team", type="object",
      *                  @OA\Property(property="id", type="string", example="1"),
      *                  @OA\Property(property="name", type="string", example="Team 1"),
      *                  @OA\Property(property="slug", type="string", example="team-1"),
-     *                  @OA\Property(property="stadium", type="string", example="Stadium 1"),
-     *                  @OA\Property(property="city", type="string", example="City 1"),
-     *                  @OA\Property(property="country", type="string", example="Country 1"),
-     *                  @OA\Property(property="coach", type="string", example="Coach 1"),
-     *                  @OA\Property(property="league", type="string", example="League 1"),
-     *                  @OA\Property(property="active", type="boolean", example="true"),
-     *                  @OA\Property(property="created_at", type="string", example="2023-01-01T00:00:00.000000Z"),
-     *                  @OA\Property(property="updated_at", type="string", example="2023-01-01T00:00:00.000000Z")
      *              )
      *         )
      *     ),
@@ -132,7 +135,7 @@ class PlayersController extends Controller
      *              @OA\Property(property="age", type="interger", example=25),
      *              @OA\Property(property="height", type="interger", example=180),
      *              @OA\Property(property="weight", type="interger", example=80),
-     *              @OA\Property(property="position", type="string", example="Center"),
+     *              @OA\Property(property="position", type="string", example="C"),
      *              @OA\Property(property="league", type="string", example="NBA"),
      *              @OA\Property(property="team_id", type="string", example="1")
      *         )
@@ -147,7 +150,7 @@ class PlayersController extends Controller
      *              @OA\Property(property="age", type="integer", example="25"),
      *              @OA\Property(property="height", type="integer", example="180"),
      *              @OA\Property(property="weight", type="integer", example="80"),
-     *              @OA\Property(property="position", type="string", example="Center"),
+     *              @OA\Property(property="position", type="string", example="C"),
      *              @OA\Property(property="league", type="string", example="NBA"),
      *              @OA\Property(property="team_id", type="string", example="1"),
      *              @OA\Property(property="created_at", type="string", example="2023-01-01T00:00:00.000000Z"),
@@ -199,7 +202,7 @@ class PlayersController extends Controller
      *              @OA\Property(property="age", type="interger", example=25),
      *              @OA\Property(property="height", type="interger", example=180),
      *              @OA\Property(property="weight", type="interger", example=80),
-     *              @OA\Property(property="position", type="string", example="Center"),
+     *              @OA\Property(property="position", type="string", example="C"),
      *              @OA\Property(property="league", type="string", example="NBA"),
      *              @OA\Property(property="team_id", type="string", example="1")
      *         )
@@ -214,7 +217,7 @@ class PlayersController extends Controller
      *              @OA\Property(property="age", type="integer", example="25"),
      *              @OA\Property(property="height", type="integer", example="180"),
      *              @OA\Property(property="weight", type="integer", example="80"),
-     *              @OA\Property(property="position", type="string", example="Center"),
+     *              @OA\Property(property="position", type="string", example="C"),
      *              @OA\Property(property="league", type="string", example="NBA"),
      *              @OA\Property(property="active", type="boolean", example="true"),
      *              @OA\Property(property="team_id", type="string", example="1"),
