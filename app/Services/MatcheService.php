@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Http\Requests\Match\MatchRequest;
+use App\Http\Resources\MatchResource;
 use App\Repositories\Contracts\MatcheRepositoryInterface;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request as HttpRequest;
@@ -17,7 +19,7 @@ class MatcheService
 
         $matches = $this->repository->index($slug);
 
-        return response()->json($matches);
+        return MatchResource::collection($matches);
     }
 
     public function show($id)
@@ -31,7 +33,7 @@ class MatcheService
 
             $match = $this->repository->show($id);
 
-            return response()->json($match);
+            return MatchResource::make($match);
         } catch (ModelNotFoundException $e) {
             return response()->json([
                 'message' => 'Match not found.',
@@ -39,14 +41,14 @@ class MatcheService
         }
     }
 
-    public function store(array $data)
+    public function store(MatchRequest $data)
     {
-        $match = $this->repository->store($data);
+        $match = $this->repository->store($data->toArray());
 
-        return response()->json($match, 201);
+        return response()->json(MatchResource::make($match), 201);
     }
 
-    public function update(array $data, $id)
+    public function update(MatchRequest $data, $id)
     {
         try {
             if (!Str::isUuid($id)) {
@@ -55,9 +57,9 @@ class MatcheService
                 ], 400);
             }
 
-            $match = $this->repository->update($data, $id);
+            $match = $this->repository->update($data->toArray(), $id);
 
-            return response()->json($match);
+            return MatchResource::make($match);
         } catch (ModelNotFoundException $e) {
             return response()->json([
                 'message' => 'Match not found.',
