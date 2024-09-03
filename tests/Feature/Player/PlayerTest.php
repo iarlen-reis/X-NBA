@@ -5,7 +5,6 @@ namespace Tests\Feature\Player;
 use App\Models\Player;
 use App\Models\Team;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
@@ -36,11 +35,12 @@ class PlayerTest extends TestCase
                     ->whereType('league', 'string')
                     ->whereType('average', 'array')
                     ->has('average', function ($json) {
-                        $json->whereType('pts', 'integer')
-                            ->whereType('reb', 'integer')
-                            ->whereType('ast', 'integer')
-                            ->whereType('stl', 'integer')
-                            ->whereType('blk', 'integer');
+                        $json->whereType('min', 'string')
+                            ->whereType('pts', 'string')
+                            ->whereType('reb', 'string')
+                            ->whereType('ast', 'string')
+                            ->whereType('stl', 'string')
+                            ->whereType('blk', 'string');
                     })
                     ->has('team', function ($json) {
                         $json->whereType('id', 'string')
@@ -72,6 +72,7 @@ class PlayerTest extends TestCase
                 'slug' => $player->team->slug,
             ],
             'average' => [
+                'min' => $player->average['min'],
                 'pts' => $player->average['pts'],
                 'reb' => $player->average['reb'],
                 'ast' => $player->average['ast'],

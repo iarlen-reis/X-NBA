@@ -26,12 +26,16 @@ class MatcheTest extends TestCase
             'match_id' => $match->id,
             'team_id' => $team->id,
             'role' => 'home',
+            'score' => 100,
+            'winner' => true,
         ]);
 
         MatchTeam::factory()->create([
             'match_id' => $match->id,
             'team_id' => $team2->id,
             'role' => 'away',
+            'score' => 98,
+            'winner' => false,
         ]);
 
         $response = $this->getJson('/api/matches')->assertStatus(200);
@@ -49,6 +53,8 @@ class MatcheTest extends TestCase
                         $json->whereType('id', 'string');
                         $json->whereType('role', 'string');
                         $json->whereType('team', 'array');
+                        $json->whereType('score', 'integer');
+                        $json->whereType('winner', 'boolean');
                         $json->has('team', function (AssertableJson $json) {
                             $json->whereType('id', 'string');
                             $json->whereType('name', 'string');
@@ -74,12 +80,16 @@ class MatcheTest extends TestCase
             'match_id' => $match->id,
             'team_id' => $team->id,
             'role' => 'home',
+            'score' => 100,
+            'winner' => true,
         ]);
 
         MatchTeam::factory()->create([
             'match_id' => $match2->id,
             'team_id' => $team->id,
             'role' => 'home',
+            'score' => 98,
+            'winner' => false,
         ]);
 
         $response = $this->getJson('/api/matches?slug=miami-heat')
@@ -119,6 +129,8 @@ class MatcheTest extends TestCase
                 ->has('matches_teams', 2, function (AssertableJson $json) {
                     $json->whereType('id', 'string');
                     $json->whereType('role', 'string');
+                    $json->whereType('score', 'integer');
+                    $json->whereType('winner', 'boolean');
                     $json->whereType('team', 'array');
                     $json->has('team', function (AssertableJson $json) {
                         $json->whereType('id', 'string');

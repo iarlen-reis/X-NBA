@@ -29,11 +29,12 @@ class AverageTest extends TestCase
                         ->whereType('league', 'string');
                 })->has('average', function ($json) {
                     $json->whereType('id', 'string')
-                        ->whereType('pts', 'integer')
-                        ->whereType('reb', 'integer')
-                        ->whereType('ast', 'integer')
-                        ->whereType('stl', 'integer')
-                        ->whereType('blk', 'integer');
+                        ->whereType('min', 'string')
+                        ->whereType('pts', 'string')
+                        ->whereType('reb', 'string')
+                        ->whereType('ast', 'string')
+                        ->whereType('stl', 'string')
+                        ->whereType('blk', 'string');
                 });
             });
         });
@@ -55,6 +56,7 @@ class AverageTest extends TestCase
             ],
             'average' => [
                 'id' => $average->id,
+                'min' => $average->min,
                 'pts' => $average->pts,
                 'reb' => $average->reb,
                 'ast' => $average->ast,
@@ -97,6 +99,7 @@ class AverageTest extends TestCase
         $player = Player::factory()->create();
 
         $response = $this->postJson('/api/averages', [
+            'min' => 32,
             'pts' => 25,
             'reb' => 25,
             'ast' => 25,
@@ -116,6 +119,7 @@ class AverageTest extends TestCase
             ],
             'average' => [
                 'id' => $average->id,
+                'min' => $average->min,
                 'pts' => $average->pts,
                 'reb' => $average->reb,
                 'ast' => $average->ast,
@@ -130,6 +134,7 @@ class AverageTest extends TestCase
         $average = Average::factory()->create();
 
         $response = $this->putJson("/api/averages/{$average->id}", [
+            'min' => 32,
             'pts' => 400,
             'reb' => 10,
             'ast' => 120,
@@ -147,6 +152,7 @@ class AverageTest extends TestCase
             ],
             'average' => [
                 'id' => $average->id,
+                'min' => 32,
                 'pts' => 400,
                 'reb' => 10,
                 'ast' => 120,
@@ -159,6 +165,7 @@ class AverageTest extends TestCase
     public function test_update_average_endpoint_with_invalid_id(): void
     {
         $response = $this->putJson('/api/averages/9cac53be-803f-475e-98bc-8c73b48b2577', [
+            'min' => 32,
             'pts' => 400,
             'reb' => 10,
             'ast' => 120,
@@ -179,6 +186,7 @@ class AverageTest extends TestCase
     public function test_update_average_endpoint_with_type_invalid_id(): void
     {
         $response = $this->putJson('/api/averages/1', [
+            'min' => 32,
             'pts' => 400,
             'reb' => 10,
             'ast' => 120,

@@ -24,6 +24,8 @@ class MatcheTeamTest extends TestCase
             $json->has(0, function ($json) {
                 $json->whereType('id', 'string');
                 $json->whereType('role', 'string');
+                $json->whereType('score', 'integer');
+                $json->whereType('winner', 'boolean');
                 $json->has('match', function ($json) {
                     $json->whereType('id', 'string');
                     $json->whereType('date', 'string');
@@ -50,6 +52,8 @@ class MatcheTeamTest extends TestCase
         $response->assertJsonStructure([
             'id',
             'role',
+            'score',
+            'winner',
             'match',
             'team',
         ]);
@@ -57,6 +61,8 @@ class MatcheTeamTest extends TestCase
         $response->assertJson(function (AssertableJson $json) {
             $json->whereType('id', 'string');
             $json->whereType('role', 'string');
+            $json->whereType('score', 'integer');
+            $json->whereType('winner', 'boolean');
             $json->has('match', function ($json) {
                 $json->whereType('id', 'string');
                 $json->whereType('date', 'string');
@@ -108,12 +114,16 @@ class MatcheTeamTest extends TestCase
             'match_id' => $matchTeam->match_id,
             'team_id' => $matchTeam->team_id,
             'role' => $matchTeam->role,
+            'score' => $matchTeam->score,
+            'winner' => $matchTeam->winner,
         ])->assertStatus(201);
 
 
         $response->assertJson(function (AssertableJson $json) use ($matchTeam) {
             $json->whereType('id', 'string');
             $json->whereType('role', 'string');
+            $json->whereType('score', 'integer');
+            $json->whereType('winner', 'boolean');
             $json->has('match', function ($json) use ($matchTeam) {
                 $json->whereType('id', 'string');
                 $json->whereType('date', 'string');
@@ -139,11 +149,15 @@ class MatcheTeamTest extends TestCase
             'match_id' => $matchTeam->match_id,
             'team_id' => $matchTeam->team_id,
             'role' => 'home',
+            'score' => $matchTeam->score,
+            'winner' => $matchTeam->winner,
         ])->assertStatus(200);
 
         $response->assertJsonStructure([
             'id',
             'role',
+            'score',
+            'winner',
             'match',
             'team',
         ]);
@@ -151,6 +165,8 @@ class MatcheTeamTest extends TestCase
         $response->assertJson(function (AssertableJson $json) {
             $json->whereType('id', 'string');
             $json->whereType('role', 'string');
+            $json->whereType('score', 'integer');
+            $json->whereType('winner', 'boolean');
             $json->has('match', function ($json) {
                 $json->whereType('id', 'string');
                 $json->whereType('date', 'string');
@@ -168,6 +184,8 @@ class MatcheTeamTest extends TestCase
         $response->assertJson([
             'id' => $matchTeam->id,
             'role' => 'home',
+            'score' => $matchTeam->score,
+            'winner' => $matchTeam->winner,
             'match' => [
                 'id' => $matchTeam->match_id,
                 'date' => $matchTeam->match->date,
@@ -189,6 +207,8 @@ class MatcheTeamTest extends TestCase
             'match_id' => '9cac53be-803f-475e-98bc-8c73b48b2577',
             'team_id' => '9cac53be-803f-475e-98bc-8c73b48b2577',
             'role' => 'home',
+            'score' => 0,
+            'winner' => false,
         ])->assertStatus(404);
 
         $response->assertJsonStructure([
@@ -206,6 +226,8 @@ class MatcheTeamTest extends TestCase
             'match_id' => '9cac53be-803f-475e-98bc-8c73b48b2577',
             'team_id' => '9cac53be-803f-475e-98bc-8c73b48b2577',
             'role' => 'home',
+            'score' => 0,
+            'winner' => false,
         ])->assertStatus(400);
 
         $response->assertJsonStructure([
