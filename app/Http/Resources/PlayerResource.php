@@ -25,6 +25,7 @@ class PlayerResource extends JsonResource
             'position' => $this->position,
             'average' => $this->when($this->average, function () {
                 return [
+                    'min' => $this->average['min'],
                     'pts' => $this->average['pts'],
                     'reb' => $this->average['reb'],
                     'ast' => $this->average['ast'],
