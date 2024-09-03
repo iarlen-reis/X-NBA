@@ -1100,25 +1100,51 @@
                                                 "type": "string",
                                                 "example": "1"
                                             },
-                                            "match_id": {
-                                                "type": "string",
-                                                "example": "1"
-                                            },
-                                            "team_id": {
-                                                "type": "string",
-                                                "example": "1"
-                                            },
                                             "role": {
                                                 "type": "string",
                                                 "example": "home"
                                             },
-                                            "created_at": {
-                                                "type": "string",
-                                                "example": "2023-01-01T00:00:00.000000Z"
+                                            "match": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "example": "1"
+                                                    },
+                                                    "date": {
+                                                        "type": "string",
+                                                        "example": "2023-01-01T00:00:00.000000Z"
+                                                    },
+                                                    "location": {
+                                                        "type": "string",
+                                                        "example": "Boston, MA"
+                                                    },
+                                                    "stadium": {
+                                                        "type": "string",
+                                                        "example": "TD Garden"
+                                                    },
+                                                    "league": {
+                                                        "type": "string",
+                                                        "example": "NBA"
+                                                    }
+                                                },
+                                                "type": "object"
                                             },
-                                            "updated_at": {
-                                                "type": "string",
-                                                "example": "2023-01-01T00:00:00.000000Z"
+                                            "team": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "example": "1"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Los Angeles Lakers"
+                                                    },
+                                                    "slug": {
+                                                        "type": "string",
+                                                        "example": "los-angeles-lakers"
+                                                    }
+                                                },
+                                                "type": "object"
                                             }
                                         },
                                         "type": "object"
@@ -1170,25 +1196,51 @@
                                             "type": "string",
                                             "example": "1"
                                         },
-                                        "match_id": {
-                                            "type": "string",
-                                            "example": "1"
-                                        },
-                                        "team_id": {
-                                            "type": "string",
-                                            "example": "1"
-                                        },
                                         "role": {
                                             "type": "string",
                                             "example": "home"
                                         },
-                                        "created_at": {
-                                            "type": "string",
-                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        "match": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "example": "1"
+                                                },
+                                                "date": {
+                                                    "type": "string",
+                                                    "example": "2023-01-01T00:00:00.000000Z"
+                                                },
+                                                "location": {
+                                                    "type": "string",
+                                                    "example": "Boston, MA"
+                                                },
+                                                "stadium": {
+                                                    "type": "string",
+                                                    "example": "TD Garden"
+                                                },
+                                                "league": {
+                                                    "type": "string",
+                                                    "example": "NBA"
+                                                }
+                                            },
+                                            "type": "object"
                                         },
-                                        "updated_at": {
-                                            "type": "string",
-                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        "team": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "example": "1"
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Los Angeles Lakers"
+                                                },
+                                                "slug": {
+                                                    "type": "string",
+                                                    "example": "los-angeles-lakers"
+                                                }
+                                            },
+                                            "type": "object"
                                         }
                                     },
                                     "type": "object"
@@ -1256,25 +1308,51 @@
                                             "type": "string",
                                             "example": "1"
                                         },
-                                        "match_id": {
-                                            "type": "string",
-                                            "example": "1"
-                                        },
-                                        "team_id": {
-                                            "type": "string",
-                                            "example": "1"
-                                        },
                                         "role": {
                                             "type": "string",
                                             "example": "home"
                                         },
-                                        "created_at": {
-                                            "type": "string",
-                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        "match": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "example": "1"
+                                                },
+                                                "date": {
+                                                    "type": "string",
+                                                    "example": "2023-01-01T00:00:00.000000Z"
+                                                },
+                                                "location": {
+                                                    "type": "string",
+                                                    "example": "Boston, MA"
+                                                },
+                                                "stadium": {
+                                                    "type": "string",
+                                                    "example": "TD Garden"
+                                                },
+                                                "league": {
+                                                    "type": "string",
+                                                    "example": "NBA"
+                                                }
+                                            },
+                                            "type": "object"
                                         },
-                                        "updated_at": {
-                                            "type": "string",
-                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        "team": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "example": "1"
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Los Angeles Lakers"
+                                                },
+                                                "slug": {
+                                                    "type": "string",
+                                                    "example": "los-angeles-lakers"
+                                                }
+                                            },
+                                            "type": "object"
                                         }
                                     },
                                     "type": "object"
@@ -1368,25 +1446,51 @@
                                             "type": "string",
                                             "example": "1"
                                         },
-                                        "match_id": {
-                                            "type": "string",
-                                            "example": "1"
-                                        },
-                                        "team_id": {
-                                            "type": "string",
-                                            "example": "1"
-                                        },
                                         "role": {
                                             "type": "string",
                                             "example": "home"
                                         },
-                                        "created_at": {
-                                            "type": "string",
-                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        "match": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "example": "1"
+                                                },
+                                                "date": {
+                                                    "type": "string",
+                                                    "example": "2023-01-01T00:00:00.000000Z"
+                                                },
+                                                "location": {
+                                                    "type": "string",
+                                                    "example": "Boston, MA"
+                                                },
+                                                "stadium": {
+                                                    "type": "string",
+                                                    "example": "TD Garden"
+                                                },
+                                                "league": {
+                                                    "type": "string",
+                                                    "example": "NBA"
+                                                }
+                                            },
+                                            "type": "object"
                                         },
-                                        "updated_at": {
-                                            "type": "string",
-                                            "example": "2023-01-01T00:00:00.000000Z"
+                                        "team": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "example": "1"
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Los Angeles Lakers"
+                                                },
+                                                "slug": {
+                                                    "type": "string",
+                                                    "example": "los-angeles-lakers"
+                                                }
+                                            },
+                                            "type": "object"
                                         }
                                     },
                                     "type": "object"

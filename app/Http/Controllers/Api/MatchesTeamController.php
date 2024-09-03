@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MatchTeam\MatchTeamRequest;
 use App\Services\MatchTeamService;
 use Illuminate\Http\Request;
 
@@ -31,11 +32,19 @@ class MatchesTeamController extends Controller
      *              @OA\Items(
      *                  type="object",
      *                  @OA\Property(property="id", type="string", example="1"),
-     *                  @OA\Property(property="match_id", type="string", example="1"),
-     *                  @OA\Property(property="team_id", type="string", example="1"),
      *                  @OA\Property(property="role", type="string", example="home"),
-     *                  @OA\Property(property="created_at", type="string", example="2023-01-01T00:00:00.000000Z"),
-     *                  @OA\Property(property="updated_at", type="string", example="2023-01-01T00:00:00.000000Z")
+     *                  @OA\Property(property="match", type="object",
+     *                      @OA\Property(property="id", type="string", example="1"),
+     *                      @OA\Property(property="date", type="string", example="2023-01-01T00:00:00.000000Z"),
+     *                      @OA\Property(property="location", type="string", example="Boston, MA"),
+     *                      @OA\Property(property="stadium", type="string", example="TD Garden"),
+     *                      @OA\Property(property="league", type="string", example="NBA"),
+     *                  ),
+     *                  @OA\Property(property="team", type="object",
+     *                      @OA\Property(property="id", type="string", example="1"),
+     *                      @OA\Property(property="name", type="string", example="Los Angeles Lakers"),
+     *                      @OA\Property(property="slug", type="string", example="los-angeles-lakers"),
+     *                  ),
      *              )
      *         )
      *     ),
@@ -66,11 +75,19 @@ class MatchesTeamController extends Controller
      *         @OA\JsonContent(
      *              type="object",
      *              @OA\Property(property="id", type="string", example="1"),
-     *              @OA\Property(property="match_id", type="string", example="1"),
-     *              @OA\Property(property="team_id", type="string", example="1"),
      *              @OA\Property(property="role", type="string", example="home"),
-     *              @OA\Property(property="created_at", type="string", example="2023-01-01T00:00:00.000000Z"),
-     *              @OA\Property(property="updated_at", type="string", example="2023-01-01T00:00:00.000000Z")
+     *              @OA\Property(property="match", type="object",
+     *                  @OA\Property(property="id", type="string", example="1"),
+     *                  @OA\Property(property="date", type="string", example="2023-01-01T00:00:00.000000Z"),
+     *                  @OA\Property(property="location", type="string", example="Boston, MA"),
+     *                  @OA\Property(property="stadium", type="string", example="TD Garden"),
+     *                  @OA\Property(property="league", type="string", example="NBA"),
+     *               ),
+     *              @OA\Property(property="team", type="object",
+     *                  @OA\Property(property="id", type="string", example="1"),
+     *                  @OA\Property(property="name", type="string", example="Los Angeles Lakers"),
+     *                  @OA\Property(property="slug", type="string", example="los-angeles-lakers"),
+     *              ),
      *         )
      *     ),
      *     @OA\Response(
@@ -93,9 +110,7 @@ class MatchesTeamController extends Controller
      */
     public function show(Request $request, string $id)
     {
-        $match = $this->matchTeamService->show($id);
-
-        return $match;
+        return $this->matchTeamService->show($id);
     }
 
     /**
@@ -118,11 +133,19 @@ class MatchesTeamController extends Controller
      *         @OA\JsonContent(
      *              type="object",
      *              @OA\Property(property="id", type="string", example="1"),
-     *              @OA\Property(property="match_id", type="string", example="1"),
-     *              @OA\Property(property="team_id", type="string", example="1"),
      *              @OA\Property(property="role", type="string", example="home"),
-     *              @OA\Property(property="created_at", type="string", example="2023-01-01T00:00:00.000000Z"),
-     *              @OA\Property(property="updated_at", type="string", example="2023-01-01T00:00:00.000000Z")
+     *              @OA\Property(property="match", type="object",
+     *                  @OA\Property(property="id", type="string", example="1"),
+     *                  @OA\Property(property="date", type="string", example="2023-01-01T00:00:00.000000Z"),
+     *                  @OA\Property(property="location", type="string", example="Boston, MA"),
+     *                  @OA\Property(property="stadium", type="string", example="TD Garden"),
+     *                  @OA\Property(property="league", type="string", example="NBA"),
+     *               ),
+     *              @OA\Property(property="team", type="object",
+     *                  @OA\Property(property="id", type="string", example="1"),
+     *                  @OA\Property(property="name", type="string", example="Los Angeles Lakers"),
+     *                  @OA\Property(property="slug", type="string", example="los-angeles-lakers"),
+     *              ),
      *         )
      *     ),
      *     @OA\Response(
@@ -141,11 +164,9 @@ class MatchesTeamController extends Controller
      *      ),
      * )
      */
-    public function store(Request $request)
+    public function store(MatchTeamRequest $request)
     {
-        $match = $this->matchTeamService->store($request->all());
-
-        return $match;
+        return $this->matchTeamService->store($request);
     }
 
     /**
@@ -177,11 +198,19 @@ class MatchesTeamController extends Controller
      *         @OA\JsonContent(
      *              type="object",
      *              @OA\Property(property="id", type="string", example="1"),
-     *              @OA\Property(property="match_id", type="string", example="1"),
-     *              @OA\Property(property="team_id", type="string", example="1"),
      *              @OA\Property(property="role", type="string", example="home"),
-     *              @OA\Property(property="created_at", type="string", example="2023-01-01T00:00:00.000000Z"),
-     *              @OA\Property(property="updated_at", type="string", example="2023-01-01T00:00:00.000000Z")
+     *              @OA\Property(property="match", type="object",
+     *                  @OA\Property(property="id", type="string", example="1"),
+     *                  @OA\Property(property="date", type="string", example="2023-01-01T00:00:00.000000Z"),
+     *                  @OA\Property(property="location", type="string", example="Boston, MA"),
+     *                  @OA\Property(property="stadium", type="string", example="TD Garden"),
+     *                  @OA\Property(property="league", type="string", example="NBA"),
+     *               ),
+     *              @OA\Property(property="team", type="object",
+     *                  @OA\Property(property="id", type="string", example="1"),
+     *                  @OA\Property(property="name", type="string", example="Los Angeles Lakers"),
+     *                  @OA\Property(property="slug", type="string", example="los-angeles-lakers"),
+     *              ),
      *         )
      *     ),
      *     @OA\Response(
@@ -202,11 +231,9 @@ class MatchesTeamController extends Controller
      *     ),
      * )
      */
-    public function update(Request $request, string $id)
+    public function update(MatchTeamRequest $request, string $id)
     {
-        $match = $this->matchTeamService->update($request->all(), $id);
-
-        return $match;
+        return $this->matchTeamService->update($request, $id);
     }
 
 

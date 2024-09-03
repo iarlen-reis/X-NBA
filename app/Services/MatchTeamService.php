@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Http\Requests\MatchTeam\MatchTeamRequest;
+use App\Http\Resources\MatchTeamResource;
 use App\Repositories\Contracts\MatchTeamRepositoryInterface;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Str;
@@ -19,7 +21,7 @@ class MatchTeamService
     {
         $matches = $this->matchTeamRepository->index();
 
-        return response()->json($matches);
+        return MatchTeamResource::collection($matches);
     }
 
     public function show($id)
@@ -33,7 +35,7 @@ class MatchTeamService
 
             $match = $this->matchTeamRepository->show($id);
 
-            return response()->json($match);
+            return MatchTeamResource::make($match);
         } catch (ModelNotFoundException $e) {
             return response()->json([
                 'message' => 'Match team not found.',
@@ -41,14 +43,14 @@ class MatchTeamService
         }
     }
 
-    public function store($data)
+    public function store(MatchTeamRequest $data)
     {
-        $match = $this->matchTeamRepository->store($data);
+        $match = $this->matchTeamRepository->store($data->toArray());
 
-        return response()->json($match, 201);
+        return response()->json(MatchTeamResource::make($match), 201);
     }
 
-    public function update($data, $id)
+    public function update(MatchTeamRequest $data, $id)
     {
         try {
             if (!Str::isUuid($id)) {
@@ -57,9 +59,9 @@ class MatchTeamService
                 ], 400);
             }
 
-            $match = $this->matchTeamRepository->update($data, $id);
+            $match = $this->matchTeamRepository->update($data->toArray(), $id);
 
-            return response()->json($match);
+            return MatchTeamResource::make($match);
         } catch (ModelNotFoundException $e) {
             return response()->json([
                 'message' => 'Match team not found.',
