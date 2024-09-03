@@ -22,6 +22,7 @@ class AverageResource extends JsonResource
                 'league' => $this->player->league
             ],
             'average' => [
+                'min' => $this->min,
                 'id' => $this->id,
                 'pts' => $this->pts,
                 'reb' => $this->reb,

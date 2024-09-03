@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('averages', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->integer('pts');
-            $table->integer('reb');
-            $table->integer('ast');
-            $table->integer('stl');
-            $table->integer('blk');
+            $table->decimal('min', total: 8, places: 2);
+            $table->decimal('pts', total: 8, places: 2);
+            $table->decimal('reb', total: 8, places: 2);
+            $table->decimal('ast', total: 8, places: 2);
+            $table->decimal('stl', total: 8, places: 2);
+            $table->decimal('blk', total: 8, places: 2);
             $table->uuid('player_id');
             $table->timestamps();
 

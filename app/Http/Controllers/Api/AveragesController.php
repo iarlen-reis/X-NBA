@@ -37,11 +37,12 @@ class AveragesController extends Controller
      *                 ),
      *                 @OA\Property(property="average", type="object",
      *                     @OA\Property(property="id", type="string", example="1"),
-     *                     @OA\Property(property="pts", type="integer", example="25"),
-     *                     @OA\Property(property="reb", type="integer", example="25"),
-     *                     @OA\Property(property="ast", type="integer", example="25"),
-     *                     @OA\Property(property="stl", type="integer", example="25"),
-     *                     @OA\Property(property="blk", type="integer", example="25"),
+     *                     @OA\Property(property="min", type="number", example="25"),
+     *                     @OA\Property(property="pts", type="number", example="25"),
+     *                     @OA\Property(property="reb", type="number", example="25"),
+     *                     @OA\Property(property="ast", type="number", example="25"),
+     *                     @OA\Property(property="stl", type="number", example="25"),
+     *                     @OA\Property(property="blk", type="number", example="25"),
      *                 )
      *             )
      *         )
@@ -80,11 +81,12 @@ class AveragesController extends Controller
      *              ),
      *              @OA\Property(property="average", type="object",
      *                  @OA\Property(property="id", type="string", example="1"),
-     *                  @OA\Property(property="pts", type="integer", example="25"),
-     *                  @OA\Property(property="reb", type="integer", example="25"),
-     *                  @OA\Property(property="ast", type="integer", example="25"),
-     *                  @OA\Property(property="stl", type="integer", example="25"),
-     *                  @OA\Property(property="blk", type="integer", example="25"),
+     *                  @OA\Property(property="min", type="number", example="25"),
+     *                  @OA\Property(property="pts", type="number", example="25"),
+     *                  @OA\Property(property="reb", type="number", example="25"),
+     *                  @OA\Property(property="ast", type="number", example="25"),
+     *                  @OA\Property(property="stl", type="number", example="25"),
+     *                  @OA\Property(property="blk", type="number", example="25"),
      *              )
      *         )
      *     ),
@@ -113,18 +115,19 @@ class AveragesController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/average",
+     *     path="/api/averages",
      *     tags={"Averages"},
      *     summary="Create an average",
      *     @OA\RequestBody(
      *         description="Average data",
      *         @OA\JsonContent(
      *              type="object",
-     *              @OA\Property(property="pts", type="interger", example=25),
-     *              @OA\Property(property="reb", type="interger", example=25),
-     *              @OA\Property(property="ast", type="interger", example=180),
-     *              @OA\Property(property="stl", type="interger", example=80),
-     *              @OA\Property(property="blk", type="string", example="C"),
+     *              @OA\Property(property="min", type="number", example=25),
+     *              @OA\Property(property="pts", type="number", example=25),
+     *              @OA\Property(property="reb", type="number", example=25),
+     *              @OA\Property(property="ast", type="number", example=180),
+     *              @OA\Property(property="stl", type="number", example=80),
+     *              @OA\Property(property="blk", type="string", example=2),
      *              @OA\Property(property="player_id", type="string", example="1")
      *         )
      *     ),
@@ -141,11 +144,12 @@ class AveragesController extends Controller
      *              ),
      *              @OA\Property(property="average", type="object",
      *                  @OA\Property(property="id", type="string", example="1"),
-     *                  @OA\Property(property="pts", type="interger", example="10"),
-     *                  @OA\Property(property="reb", type="interger", example="15"),
-     *                  @OA\Property(property="ast", type="interger", example="15"),
-     *                  @OA\Property(property="stl", type="interger", example="15"),
-     *                  @OA\Property(property="blk", type="interger", example="15"),
+     *                  @OA\Property(property="min", type="number", example="10"),
+     *                  @OA\Property(property="pts", type="number", example="10"),
+     *                  @OA\Property(property="reb", type="number", example="15"),
+     *                  @OA\Property(property="ast", type="number", example="15"),
+     *                  @OA\Property(property="stl", type="number", example="15"),
+     *                  @OA\Property(property="blk", type="number", example="15"),
      *              )
      *         )
      *     ),
@@ -190,11 +194,12 @@ class AveragesController extends Controller
      *         description="Average data",
      *         @OA\JsonContent(
      *              type="object",
-     *              @OA\Property(property="pts", type="interger", example=25),
-     *              @OA\Property(property="reb", type="interger", example=25),
-     *              @OA\Property(property="ast", type="interger", example=25),
-     *              @OA\Property(property="stl", type="interger", example=25),
-     *              @OA\Property(property="blk", type="interger", example=25),
+     *              @OA\Property(property="min", type="number", example=25),
+     *              @OA\Property(property="pts", type="number", example=25),
+     *              @OA\Property(property="reb", type="number", example=25),
+     *              @OA\Property(property="ast", type="number", example=25),
+     *              @OA\Property(property="stl", type="number", example=25),
+     *              @OA\Property(property="blk", type="number", example=25),
      *              @OA\Property(property="player_id", type="string", example="1")
      *         )
      *     ),
@@ -211,11 +216,12 @@ class AveragesController extends Controller
      *              ),
      *              @OA\Property(property="average", type="object",
      *                  @OA\Property(property="id", type="string", example="1"),
-     *                  @OA\Property(property="pts", type="integer", example="25"),
-     *                  @OA\Property(property="reb", type="integer", example="25"),
-     *                  @OA\Property(property="ast", type="integer", example="25"),
-     *                  @OA\Property(property="stl", type="integer", example="25"),
-     *                  @OA\Property(property="blk", type="integer", example="25"),
+     *                  @OA\Property(property="min", type="number", example="25"),
+     *                  @OA\Property(property="pts", type="number", example="25"),
+     *                  @OA\Property(property="reb", type="number", example="25"),
+     *                  @OA\Property(property="ast", type="number", example="25"),
+     *                  @OA\Property(property="stl", type="number", example="25"),
+     *                  @OA\Property(property="blk", type="number", example="25"),
      *              )
      *         )
      *     ),

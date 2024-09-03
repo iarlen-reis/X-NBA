@@ -49,24 +49,28 @@
                                                         "type": "string",
                                                         "example": "1"
                                                     },
+                                                    "min": {
+                                                        "type": "number",
+                                                        "example": "25"
+                                                    },
                                                     "pts": {
-                                                        "type": "integer",
+                                                        "type": "number",
                                                         "example": "25"
                                                     },
                                                     "reb": {
-                                                        "type": "integer",
+                                                        "type": "number",
                                                         "example": "25"
                                                     },
                                                     "ast": {
-                                                        "type": "integer",
+                                                        "type": "number",
                                                         "example": "25"
                                                     },
                                                     "stl": {
-                                                        "type": "integer",
+                                                        "type": "number",
                                                         "example": "25"
                                                     },
                                                     "blk": {
-                                                        "type": "integer",
+                                                        "type": "number",
                                                         "example": "25"
                                                     }
                                                 },
@@ -75,6 +79,149 @@
                                         },
                                         "type": "object"
                                     }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Averages"
+                ],
+                "summary": "Create an average",
+                "operationId": "00f0e4f83fe7dfb21cc01cb768a6bff1",
+                "requestBody": {
+                    "description": "Average data",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "min": {
+                                        "type": "number",
+                                        "example": 25
+                                    },
+                                    "pts": {
+                                        "type": "number",
+                                        "example": 25
+                                    },
+                                    "reb": {
+                                        "type": "number",
+                                        "example": 25
+                                    },
+                                    "ast": {
+                                        "type": "number",
+                                        "example": 180
+                                    },
+                                    "stl": {
+                                        "type": "number",
+                                        "example": 80
+                                    },
+                                    "blk": {
+                                        "type": "string",
+                                        "example": 2
+                                    },
+                                    "player_id": {
+                                        "type": "string",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "player": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "example": "1"
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Player 1"
+                                                },
+                                                "position": {
+                                                    "type": "string",
+                                                    "example": "C"
+                                                },
+                                                "league": {
+                                                    "type": "string",
+                                                    "example": "NBA"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "average": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "example": "1"
+                                                },
+                                                "min": {
+                                                    "type": "number",
+                                                    "example": "10"
+                                                },
+                                                "pts": {
+                                                    "type": "number",
+                                                    "example": "10"
+                                                },
+                                                "reb": {
+                                                    "type": "number",
+                                                    "example": "15"
+                                                },
+                                                "ast": {
+                                                    "type": "number",
+                                                    "example": "15"
+                                                },
+                                                "stl": {
+                                                    "type": "number",
+                                                    "example": "15"
+                                                },
+                                                "blk": {
+                                                    "type": "number",
+                                                    "example": "15"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The name field is required."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The name field is required."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
@@ -134,24 +281,28 @@
                                                     "type": "string",
                                                     "example": "1"
                                                 },
+                                                "min": {
+                                                    "type": "number",
+                                                    "example": "25"
+                                                },
                                                 "pts": {
-                                                    "type": "integer",
+                                                    "type": "number",
                                                     "example": "25"
                                                 },
                                                 "reb": {
-                                                    "type": "integer",
+                                                    "type": "number",
                                                     "example": "25"
                                                 },
                                                 "ast": {
-                                                    "type": "integer",
+                                                    "type": "number",
                                                     "example": "25"
                                                 },
                                                 "stl": {
-                                                    "type": "integer",
+                                                    "type": "number",
                                                     "example": "25"
                                                 },
                                                 "blk": {
-                                                    "type": "integer",
+                                                    "type": "number",
                                                     "example": "25"
                                                 }
                                             },
@@ -220,24 +371,28 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
+                                    "min": {
+                                        "type": "number",
+                                        "example": 25
+                                    },
                                     "pts": {
-                                        "type": "interger",
+                                        "type": "number",
                                         "example": 25
                                     },
                                     "reb": {
-                                        "type": "interger",
+                                        "type": "number",
                                         "example": 25
                                     },
                                     "ast": {
-                                        "type": "interger",
+                                        "type": "number",
                                         "example": 25
                                     },
                                     "stl": {
-                                        "type": "interger",
+                                        "type": "number",
                                         "example": 25
                                     },
                                     "blk": {
-                                        "type": "interger",
+                                        "type": "number",
                                         "example": 25
                                     },
                                     "player_id": {
@@ -284,24 +439,28 @@
                                                     "type": "string",
                                                     "example": "1"
                                                 },
+                                                "min": {
+                                                    "type": "number",
+                                                    "example": "25"
+                                                },
                                                 "pts": {
-                                                    "type": "integer",
+                                                    "type": "number",
                                                     "example": "25"
                                                 },
                                                 "reb": {
-                                                    "type": "integer",
+                                                    "type": "number",
                                                     "example": "25"
                                                 },
                                                 "ast": {
-                                                    "type": "integer",
+                                                    "type": "number",
                                                     "example": "25"
                                                 },
                                                 "stl": {
-                                                    "type": "integer",
+                                                    "type": "number",
                                                     "example": "25"
                                                 },
                                                 "blk": {
-                                                    "type": "integer",
+                                                    "type": "number",
                                                     "example": "25"
                                                 }
                                             },
@@ -421,143 +580,6 @@
                                         "message": {
                                             "type": "string",
                                             "example": "Invalid ID provided, use a valid UUID."
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/average": {
-            "post": {
-                "tags": [
-                    "Averages"
-                ],
-                "summary": "Create an average",
-                "operationId": "03040a49bcd21fffc2907ef5305d8365",
-                "requestBody": {
-                    "description": "Average data",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "pts": {
-                                        "type": "interger",
-                                        "example": 25
-                                    },
-                                    "reb": {
-                                        "type": "interger",
-                                        "example": 25
-                                    },
-                                    "ast": {
-                                        "type": "interger",
-                                        "example": 180
-                                    },
-                                    "stl": {
-                                        "type": "interger",
-                                        "example": 80
-                                    },
-                                    "blk": {
-                                        "type": "string",
-                                        "example": "C"
-                                    },
-                                    "player_id": {
-                                        "type": "string",
-                                        "example": "1"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "player": {
-                                            "properties": {
-                                                "id": {
-                                                    "type": "string",
-                                                    "example": "1"
-                                                },
-                                                "name": {
-                                                    "type": "string",
-                                                    "example": "Player 1"
-                                                },
-                                                "position": {
-                                                    "type": "string",
-                                                    "example": "C"
-                                                },
-                                                "league": {
-                                                    "type": "string",
-                                                    "example": "NBA"
-                                                }
-                                            },
-                                            "type": "object"
-                                        },
-                                        "average": {
-                                            "properties": {
-                                                "id": {
-                                                    "type": "string",
-                                                    "example": "1"
-                                                },
-                                                "pts": {
-                                                    "type": "interger",
-                                                    "example": "10"
-                                                },
-                                                "reb": {
-                                                    "type": "interger",
-                                                    "example": "15"
-                                                },
-                                                "ast": {
-                                                    "type": "interger",
-                                                    "example": "15"
-                                                },
-                                                "stl": {
-                                                    "type": "interger",
-                                                    "example": "15"
-                                                },
-                                                "blk": {
-                                                    "type": "interger",
-                                                    "example": "15"
-                                                }
-                                            },
-                                            "type": "object"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "Unprocessable Entity",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "The name field is required."
-                                        },
-                                        "errors": {
-                                            "properties": {
-                                                "name": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "string",
-                                                        "example": "The name field is required."
-                                                    }
-                                                }
-                                            },
-                                            "type": "object"
                                         }
                                     },
                                     "type": "object"

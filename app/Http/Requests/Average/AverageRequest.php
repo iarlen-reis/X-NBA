@@ -22,11 +22,12 @@ class AverageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'pts' => 'required|integer',
-            'reb' => 'required|integer',
-            'ast' => 'required|integer',
-            'stl' => 'required|integer',
-            'blk' => 'required|integer',
+            'min' => 'required|numeric',
+            'pts' => 'required|numeric',
+            'reb' => 'required|numeric',
+            'ast' => 'required|numeric',
+            'stl' => 'required|numeric',
+            'blk' => 'required|numeric',
             'player_id' => 'required|string',
         ];
     }
