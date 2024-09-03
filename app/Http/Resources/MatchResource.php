@@ -24,6 +24,8 @@ class MatchResource extends JsonResource
                 return [
                     'id' => $team->id,
                     'role' => $team->role,
+                    'score' => $team->score,
+                    'winner' => $team->winner,
                     'team' => [
                         'id' => $team->team->id,
                         'name' => $team->team->name,
