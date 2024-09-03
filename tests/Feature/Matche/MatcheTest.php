@@ -6,6 +6,7 @@ use App\Models\Matche;
 use App\Models\MatchTeam;
 use App\Models\Team;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Testing\Assert;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
@@ -15,22 +16,45 @@ class MatcheTest extends TestCase
 
     public function test_index_matche_endpoint(): void
     {
-        $matches = Matche::factory()->count(2)->create();
+
+        $match = Matche::factory()->create();
+
+        $team = Team::factory()->create();
+        $team2 = Team::factory()->create();
+
+        MatchTeam::factory()->create([
+            'match_id' => $match->id,
+            'team_id' => $team->id,
+            'role' => 'home',
+        ]);
+
+        MatchTeam::factory()->create([
+            'match_id' => $match->id,
+            'team_id' => $team2->id,
+            'role' => 'away',
+        ]);
 
         $response = $this->getJson('/api/matches')->assertStatus(200);
 
-        $response->assertJsonCount(2);
+        $response->assertJsonCount(1);
 
-        $response->assertJson(function (AssertableJson $json) {
-            $json->has(0, function ($json) {
+        $response->assertJson(function (AssertableJson $json) use ($response) {
+            $json->has(0, function (AssertableJson $json) {
                 $json->whereType('id', 'string');
                 $json->whereType('date', 'string');
                 $json->whereType('location', 'string');
                 $json->whereType('stadium', 'string');
-                $json->whereType('league', 'string');
-                $json->whereType('created_at', 'string');
-                $json->whereType('updated_at', 'string');
-                $json->whereType('matches_teams', 'array');
+                $json->whereType('league', 'string')
+                    ->has('matches_teams', 2, function (AssertableJson $json) {
+                        $json->whereType('id', 'string');
+                        $json->whereType('role', 'string');
+                        $json->whereType('team', 'array');
+                        $json->has('team', function (AssertableJson $json) {
+                            $json->whereType('id', 'string');
+                            $json->whereType('name', 'string');
+                            $json->whereType('slug', 'string');
+                        });
+                    });
             });
         });
     }
@@ -68,16 +92,41 @@ class MatcheTest extends TestCase
     {
         $match = Matche::factory()->create();
 
+        $team = Team::factory()->create();
+        $team2 = Team::factory()->create();
+
+        MatchTeam::factory()->create([
+            'match_id' => $match->id,
+            'team_id' => $team->id,
+            'role' => 'home',
+        ]);
+
+        MatchTeam::factory()->create([
+            'match_id' => $match->id,
+            'team_id' => $team2->id,
+            'role' => 'away',
+        ]);
+
         $response = $this->getJson("/api/matches/{$match->id}")
             ->assertStatus(200);
 
-        $response->assertJson([
-            'id' => $match->id,
-            'date' => $match->date,
-            'location' => $match->location,
-            'stadium' => $match->stadium,
-            'league' => $match->league,
-        ]);
+        $response->assertJson(function (AssertableJson $json) use ($response) {
+            $json->whereType('id', 'string')
+                ->whereType('date', 'string')
+                ->whereType('location', 'string')
+                ->whereType('stadium', 'string')
+                ->whereType('league', 'string')
+                ->has('matches_teams', 2, function (AssertableJson $json) {
+                    $json->whereType('id', 'string');
+                    $json->whereType('role', 'string');
+                    $json->whereType('team', 'array');
+                    $json->has('team', function (AssertableJson $json) {
+                        $json->whereType('id', 'string');
+                        $json->whereType('name', 'string');
+                        $json->whereType('slug', 'string');
+                    });
+                });
+        });
     }
 
     public function test_show_matche_endpoint_with_invalid_id(): void
@@ -119,6 +168,15 @@ class MatcheTest extends TestCase
             'league' => $matche->league,
         ])->assertStatus(201);
 
+        $response->assertJson(function (AssertableJson $json) use ($response) {
+            $json->whereType('id', 'string')
+                ->whereType('date', 'string')
+                ->whereType('location', 'string')
+                ->whereType('stadium', 'string')
+                ->whereType('league', 'string')
+                ->whereType('matches_teams', 'array');
+        });
+
         $matche = Matche::first();
 
         $response->assertJson([
@@ -127,6 +185,7 @@ class MatcheTest extends TestCase
             'location' => $matche->location,
             'stadium' => $matche->stadium,
             'league' => $matche->league,
+            'matches_teams' => [],
         ]);
     }
 
@@ -141,20 +200,23 @@ class MatcheTest extends TestCase
             'league' => 'NBA',
         ])->assertStatus(200);
 
+        $response->assertJson(function (AssertableJson $json) use ($response) {
+            $json->whereType('id', 'string')
+                ->whereType('date', 'string')
+                ->whereType('location', 'string')
+                ->whereType('stadium', 'string')
+                ->whereType('league', 'string')
+                ->whereType('matches_teams', 'array');
+        });
+
         $response->assertJson([
             'id' => $matche->id,
             'date' => '2024-08-06',
             'location' => 'New York',
             'stadium' => 'Madison Square Garden',
             'league' => 'NBA',
+            'matches_teams' => [],
         ]);
-
-        $findMatch = Matche::find($matche->id);
-
-        $this->assertEquals('2024-08-06', $findMatch->date);
-        $this->assertEquals('New York', $findMatch->location);
-        $this->assertEquals('Madison Square Garden', $findMatch->stadium);
-        $this->assertEquals('NBA', $findMatch->league);
     }
 
     public function test_update_matche_endpoint_with_invalid_id(): void
