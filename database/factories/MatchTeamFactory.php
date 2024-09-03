@@ -22,6 +22,8 @@ class MatchTeamFactory extends Factory
             'match_id' => Matche::factory(),
             'team_id' => Team::factory(),
             'role' => fake()->randomElement(['home', 'away']),
+            'score' => fake()->numberBetween(0, 100),
+            'winner' => fake()->boolean(),
         ];
     }
 }

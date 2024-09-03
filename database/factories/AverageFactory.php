@@ -18,6 +18,7 @@ class AverageFactory extends Factory
     public function definition(): array
     {
         return [
+            'min' => $this->faker->numberBetween(2, 32),
             'pts' => $this->faker->numberBetween(0, 100),
             'reb' => $this->faker->numberBetween(0, 100),
             'ast' => $this->faker->numberBetween(0, 100),
