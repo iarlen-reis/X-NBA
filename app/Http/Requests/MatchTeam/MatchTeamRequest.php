@@ -25,6 +25,8 @@ class MatchTeamRequest extends FormRequest
             'role' => 'required|string',
             'team_id' => 'required|string',
             'match_id' => 'required|string',
+            'score' => 'required|integer',
+            'winner' => 'required|boolean',
         ];
     }
 }

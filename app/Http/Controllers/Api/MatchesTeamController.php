@@ -33,6 +33,8 @@ class MatchesTeamController extends Controller
      *                  type="object",
      *                  @OA\Property(property="id", type="string", example="1"),
      *                  @OA\Property(property="role", type="string", example="home"),
+     *                  @OA\Property(property="score", type="number", example=110),
+     *                  @OA\Property(property="winner", type="boolean", example=true),
      *                  @OA\Property(property="match", type="object",
      *                      @OA\Property(property="id", type="string", example="1"),
      *                      @OA\Property(property="date", type="string", example="2023-01-01T00:00:00.000000Z"),
@@ -76,6 +78,8 @@ class MatchesTeamController extends Controller
      *              type="object",
      *              @OA\Property(property="id", type="string", example="1"),
      *              @OA\Property(property="role", type="string", example="home"),
+     *              @OA\Property(property="score", type="number", example=110),
+     *              @OA\Property(property="winner", type="boolean", example=true),
      *              @OA\Property(property="match", type="object",
      *                  @OA\Property(property="id", type="string", example="1"),
      *                  @OA\Property(property="date", type="string", example="2023-01-01T00:00:00.000000Z"),
@@ -124,7 +128,9 @@ class MatchesTeamController extends Controller
      *              type="object",
      *              @OA\Property(property="match_id", type="string", example="1"),
      *              @OA\Property(property="team_id", type="string", example="1"),
-     *              @OA\Property(property="role", type="string", example="home")
+     *              @OA\Property(property="role", type="string", example="home"),
+     *              @OA\Property(property="score", type="number", example=110),
+     *              @OA\Property(property="winner", type="boolean", example=true),
      *         )
      *     ),
      *     @OA\Response(
@@ -134,6 +140,8 @@ class MatchesTeamController extends Controller
      *              type="object",
      *              @OA\Property(property="id", type="string", example="1"),
      *              @OA\Property(property="role", type="string", example="home"),
+     *              @OA\Property(property="score", type="number", example=110),
+     *              @OA\Property(property="winner", type="boolean", example=true),
      *              @OA\Property(property="match", type="object",
      *                  @OA\Property(property="id", type="string", example="1"),
      *                  @OA\Property(property="date", type="string", example="2023-01-01T00:00:00.000000Z"),
@@ -189,7 +197,9 @@ class MatchesTeamController extends Controller
      *              type="object",
      *              @OA\Property(property="match_id", type="string", example="1"),
      *              @OA\Property(property="team_id", type="string", example="1"),
-     *              @OA\Property(property="role", type="string", example="home")
+     *              @OA\Property(property="role", type="string", example="home"),
+     *              @OA\Property(property="score", type="number", example=110),
+     *              @OA\Property(property="winner", type="boolean", example=true),
      *         )
      *     ),
      *     @OA\Response(
@@ -199,6 +209,8 @@ class MatchesTeamController extends Controller
      *              type="object",
      *              @OA\Property(property="id", type="string", example="1"),
      *              @OA\Property(property="role", type="string", example="home"),
+     *              @OA\Property(property="score", type="number", example=110),
+     *              @OA\Property(property="winner", type="boolean", example=true),
      *              @OA\Property(property="match", type="object",
      *                  @OA\Property(property="id", type="string", example="1"),
      *                  @OA\Property(property="date", type="string", example="2023-01-01T00:00:00.000000Z"),

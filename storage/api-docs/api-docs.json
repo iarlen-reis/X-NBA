@@ -648,6 +648,14 @@
                                                             "type": "string",
                                                             "example": "home"
                                                         },
+                                                        "score": {
+                                                            "type": "number",
+                                                            "example": 110
+                                                        },
+                                                        "winner": {
+                                                            "type": "boolean",
+                                                            "example": true
+                                                        },
                                                         "team": {
                                                             "properties": {
                                                                 "id": {
@@ -838,6 +846,14 @@
                                                     "role": {
                                                         "type": "string",
                                                         "example": "home"
+                                                    },
+                                                    "score": {
+                                                        "type": "number",
+                                                        "example": 110
+                                                    },
+                                                    "winner": {
+                                                        "type": "boolean",
+                                                        "example": true
                                                     },
                                                     "team": {
                                                         "properties": {
@@ -1126,6 +1142,14 @@
                                                 "type": "string",
                                                 "example": "home"
                                             },
+                                            "score": {
+                                                "type": "number",
+                                                "example": 110
+                                            },
+                                            "winner": {
+                                                "type": "boolean",
+                                                "example": true
+                                            },
                                             "match": {
                                                 "properties": {
                                                     "id": {
@@ -1200,6 +1224,14 @@
                                     "role": {
                                         "type": "string",
                                         "example": "home"
+                                    },
+                                    "score": {
+                                        "type": "number",
+                                        "example": 110
+                                    },
+                                    "winner": {
+                                        "type": "boolean",
+                                        "example": true
                                     }
                                 },
                                 "type": "object"
@@ -1221,6 +1253,14 @@
                                         "role": {
                                             "type": "string",
                                             "example": "home"
+                                        },
+                                        "score": {
+                                            "type": "number",
+                                            "example": 110
+                                        },
+                                        "winner": {
+                                            "type": "boolean",
+                                            "example": true
                                         },
                                         "match": {
                                             "properties": {
@@ -1333,6 +1373,14 @@
                                         "role": {
                                             "type": "string",
                                             "example": "home"
+                                        },
+                                        "score": {
+                                            "type": "number",
+                                            "example": 110
+                                        },
+                                        "winner": {
+                                            "type": "boolean",
+                                            "example": true
                                         },
                                         "match": {
                                             "properties": {
@@ -1450,6 +1498,14 @@
                                     "role": {
                                         "type": "string",
                                         "example": "home"
+                                    },
+                                    "score": {
+                                        "type": "number",
+                                        "example": 110
+                                    },
+                                    "winner": {
+                                        "type": "boolean",
+                                        "example": true
                                     }
                                 },
                                 "type": "object"
@@ -1471,6 +1527,14 @@
                                         "role": {
                                             "type": "string",
                                             "example": "home"
+                                        },
+                                        "score": {
+                                            "type": "number",
+                                            "example": 110
+                                        },
+                                        "winner": {
+                                            "type": "boolean",
+                                            "example": true
                                         },
                                         "match": {
                                             "properties": {

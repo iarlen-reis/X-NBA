@@ -16,6 +16,8 @@ return new class extends Migration
             $table->uuid('match_id');
             $table->uuid('team_id');
             $table->string('role');
+            $table->integer('score');
+            $table->boolean('winner');
 
             $table->timestamps();
 

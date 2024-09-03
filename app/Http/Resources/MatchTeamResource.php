@@ -17,6 +17,8 @@ class MatchTeamResource extends JsonResource
         return [
             'id' => $this->id,
             'role' => $this->role,
+            'score' => $this->score,
+            'winner' => $this->winner,
             'match' => [
                 'id' => $this->match->id,
                 'date' => $this->match->date,
