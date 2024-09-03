@@ -23,32 +23,18 @@ class MatcheTeamTest extends TestCase
         $response->assertJson(function (AssertableJson $json) {
             $json->has(0, function ($json) {
                 $json->whereType('id', 'string');
-                $json->whereType('match_id', 'string');
-                $json->whereType('team_id', 'string');
                 $json->whereType('role', 'string');
-                $json->whereType('created_at', 'string');
-                $json->whereType('updated_at', 'string');
                 $json->has('match', function ($json) {
                     $json->whereType('id', 'string');
                     $json->whereType('date', 'string');
                     $json->whereType('location', 'string');
                     $json->whereType('stadium', 'string');
                     $json->whereType('league', 'string');
-                    $json->whereType('created_at', 'string');
-                    $json->whereType('updated_at', 'string');
                 });
                 $json->has('team', function ($json) {
                     $json->whereType('id', 'string');
                     $json->whereType('name', 'string');
                     $json->whereType('slug', 'string');
-                    $json->whereType('city', 'string');
-                    $json->whereType('country', 'string');
-                    $json->whereType('coach', 'string');
-                    $json->whereType('league', 'string');
-                    $json->whereType('stadium', 'string');
-                    $json->whereType('active', 'boolean');
-                    $json->whereType('created_at', 'string');
-                    $json->whereType('updated_at', 'string');
                 });
             });
         });
@@ -63,19 +49,27 @@ class MatcheTeamTest extends TestCase
 
         $response->assertJsonStructure([
             'id',
-            'match_id',
-            'team_id',
             'role',
-            'created_at',
-            'updated_at',
+            'match',
+            'team',
         ]);
 
-        $response->assertJson([
-            'id' => $matchTeam->id,
-            'match_id' => $matchTeam->match_id,
-            'team_id' => $matchTeam->team_id,
-            'role' => $matchTeam->role,
-        ]);
+        $response->assertJson(function (AssertableJson $json) {
+            $json->whereType('id', 'string');
+            $json->whereType('role', 'string');
+            $json->has('match', function ($json) {
+                $json->whereType('id', 'string');
+                $json->whereType('date', 'string');
+                $json->whereType('location', 'string');
+                $json->whereType('stadium', 'string');
+                $json->whereType('league', 'string');
+            });
+            $json->has('team', function ($json) {
+                $json->whereType('id', 'string');
+                $json->whereType('name', 'string');
+                $json->whereType('slug', 'string');
+            });
+        });
     }
 
     public function test_show_matche_team_endpoint_with_invalid_id()
@@ -116,20 +110,23 @@ class MatcheTeamTest extends TestCase
             'role' => $matchTeam->role,
         ])->assertStatus(201);
 
-        $matchTeam = MatchTeam::first();
 
-        $response->assertJson([
-            'id' => $matchTeam->id,
-            'match_id' => $matchTeam->match_id,
-            'team_id' => $matchTeam->team_id,
-            'role' => $matchTeam->role,
-        ]);
-
-        $findMatchTeam = MatchTeam::find($matchTeam->id);
-
-        $this->assertEquals($matchTeam->match_id, $findMatchTeam->match_id);
-        $this->assertEquals($matchTeam->team_id, $findMatchTeam->team_id);
-        $this->assertEquals($matchTeam->role, $findMatchTeam->role);
+        $response->assertJson(function (AssertableJson $json) use ($matchTeam) {
+            $json->whereType('id', 'string');
+            $json->whereType('role', 'string');
+            $json->has('match', function ($json) use ($matchTeam) {
+                $json->whereType('id', 'string');
+                $json->whereType('date', 'string');
+                $json->whereType('location', 'string');
+                $json->whereType('stadium', 'string');
+                $json->whereType('league', 'string');
+            });
+            $json->has('team', function ($json) use ($matchTeam) {
+                $json->whereType('id', 'string');
+                $json->whereType('name', 'string');
+                $json->whereType('slug', 'string');
+            });
+        });
     }
 
     public function test_update_matche_team_endpoint()
@@ -144,11 +141,45 @@ class MatcheTeamTest extends TestCase
             'role' => 'home',
         ])->assertStatus(200);
 
+        $response->assertJsonStructure([
+            'id',
+            'role',
+            'match',
+            'team',
+        ]);
+
+        $response->assertJson(function (AssertableJson $json) {
+            $json->whereType('id', 'string');
+            $json->whereType('role', 'string');
+            $json->has('match', function ($json) {
+                $json->whereType('id', 'string');
+                $json->whereType('date', 'string');
+                $json->whereType('location', 'string');
+                $json->whereType('stadium', 'string');
+                $json->whereType('league', 'string');
+            });
+            $json->has('team', function ($json) {
+                $json->whereType('id', 'string');
+                $json->whereType('name', 'string');
+                $json->whereType('slug', 'string');
+            });
+        });
+
         $response->assertJson([
             'id' => $matchTeam->id,
-            'match_id' => $matchTeam->match_id,
-            'team_id' => $matchTeam->team_id,
             'role' => 'home',
+            'match' => [
+                'id' => $matchTeam->match_id,
+                'date' => $matchTeam->match->date,
+                'location' => $matchTeam->match->location,
+                'stadium' => $matchTeam->match->stadium,
+                'league' => $matchTeam->match->league,
+            ],
+            'team' => [
+                'id' => $matchTeam->team_id,
+                'name' => $matchTeam->team->name,
+                'slug' => $matchTeam->team->slug,
+            ],
         ]);
     }
 
