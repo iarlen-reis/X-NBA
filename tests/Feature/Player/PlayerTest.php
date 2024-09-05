@@ -51,6 +51,55 @@ class PlayerTest extends TestCase
         });
     }
 
+    public function test_index_players_endpoint_with_team_filter(): void
+    {
+        $team = Team::factory()->create([
+            'name' => 'New York Knicks',
+            'slug' => 'new-york-knicks',
+        ]);
+
+        Player::factory(2)->withAverage()->create([
+            'team_id' => $team->id,
+        ]);
+
+        Player::factory(10)->withAverage()->create();
+
+        $response = $this->getJson('/api/players?team=new-york-knicks')
+            ->assertStatus(200);
+
+        $response->assertJsonCount(2);
+
+        $response->assertJson(function (AssertableJson $json) {
+            $json->has(0, function ($json) {
+                $json->whereType('id', 'string')
+                    ->whereType('name', 'string')
+                    ->whereType('age', 'integer')
+                    ->whereType('height', 'integer')
+                    ->whereType('weight', 'integer')
+                    ->whereType('position', 'string')
+                    ->whereType('league', 'string')
+                    ->whereType('average', 'array')
+                    ->has('average', function ($json) {
+                        $json->whereType('min', 'string')
+                            ->whereType('pts', 'string')
+                            ->whereType('reb', 'string')
+                            ->whereType('ast', 'string')
+                            ->whereType('stl', 'string')
+                            ->whereType('blk', 'string');
+                    })
+                    ->has('team', function ($json) {
+                        $json->whereType('id', 'string')
+                            ->whereType('name', 'string')
+                            ->whereType('slug', 'string');
+                    });
+            });
+        });
+
+        $ResponsewithoutFilter = $this->getJson('/api/players')
+            ->assertStatus(200);
+
+        $ResponsewithoutFilter->assertJsonCount(12);
+    }
     public function test_show_player_endpoint(): void
     {
         $player = Player::factory()->withAverage()->create()->load('team');
