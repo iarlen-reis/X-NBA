@@ -1681,6 +1681,16 @@
                 ],
                 "summary": "Get all players",
                 "operationId": "f254a58e1dd122db3e759f08fd18ac52",
+                "parameters": [
+                    {
+                        "name": "team",
+                        "in": "query",
+                        "description": "Filter palyers by team slug",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",

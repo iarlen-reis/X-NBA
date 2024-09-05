@@ -24,6 +24,14 @@ class PlayersController extends Controller
      *     path="/api/players",
      *     tags={"Players"},
      *     summary="Get all players",
+     *     @OA\Parameter(
+     *         name="team",
+     *         in="query",
+     *         description="Filter palyers by team slug",
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
      *     @OA\Response(
      *         response="200",
      *         description="Success",
