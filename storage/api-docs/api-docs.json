@@ -2254,6 +2254,478 @@
                 }
             }
         },
+        "/api/stats": {
+            "get": {
+                "tags": [
+                    "Stats"
+                ],
+                "summary": "Get all stats",
+                "operationId": "15e4c40e8bf4ede8bde3c40ae809abc8",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "string",
+                                                "example": "1"
+                                            },
+                                            "min": {
+                                                "type": "integer",
+                                                "example": 10
+                                            },
+                                            "pts": {
+                                                "type": "integer",
+                                                "example": 10
+                                            },
+                                            "reb": {
+                                                "type": "integer",
+                                                "example": 10
+                                            },
+                                            "ast": {
+                                                "type": "integer",
+                                                "example": 10
+                                            },
+                                            "blk": {
+                                                "type": "integer",
+                                                "example": 10
+                                            },
+                                            "stl": {
+                                                "type": "integer",
+                                                "example": 10
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Stats"
+                ],
+                "summary": "Store stats",
+                "operationId": "59cda7f786e97ed9e7dbc2fb7af6987b",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "min": {
+                                        "type": "integer",
+                                        "example": 10
+                                    },
+                                    "pts": {
+                                        "type": "integer",
+                                        "example": 10
+                                    },
+                                    "reb": {
+                                        "type": "integer",
+                                        "example": 10
+                                    },
+                                    "ast": {
+                                        "type": "integer",
+                                        "example": 10
+                                    },
+                                    "blk": {
+                                        "type": "integer",
+                                        "example": 10
+                                    },
+                                    "stl": {
+                                        "type": "integer",
+                                        "example": 10
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "min": {
+                                            "type": "integer",
+                                            "example": 10
+                                        },
+                                        "pts": {
+                                            "type": "integer",
+                                            "example": 10
+                                        },
+                                        "reb": {
+                                            "type": "integer",
+                                            "example": 10
+                                        },
+                                        "ast": {
+                                            "type": "integer",
+                                            "example": 10
+                                        },
+                                        "blk": {
+                                            "type": "integer",
+                                            "example": 10
+                                        },
+                                        "stl": {
+                                            "type": "integer",
+                                            "example": 10
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The pts field is required."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "pts": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The pts field is required."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/stats/{id}": {
+            "get": {
+                "tags": [
+                    "Stats"
+                ],
+                "summary": "Get stats by id",
+                "operationId": "f6fdbacd2a2684e2fdf1ff9866e20ad9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Stats id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "min": {
+                                            "type": "integer",
+                                            "example": 10
+                                        },
+                                        "pts": {
+                                            "type": "integer",
+                                            "example": 10
+                                        },
+                                        "reb": {
+                                            "type": "integer",
+                                            "example": 10
+                                        },
+                                        "ast": {
+                                            "type": "integer",
+                                            "example": 10
+                                        },
+                                        "blk": {
+                                            "type": "integer",
+                                            "example": 10
+                                        },
+                                        "stl": {
+                                            "type": "integer",
+                                            "example": 10
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Stats not found."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid ID provided, use a valid UUID."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Stats"
+                ],
+                "summary": "Update stats",
+                "operationId": "bc48b7b68b3def8fff47ac8c49bb6e4d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Stats ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "min": {
+                                        "type": "integer",
+                                        "example": 10
+                                    },
+                                    "pts": {
+                                        "type": "integer",
+                                        "example": 10
+                                    },
+                                    "reb": {
+                                        "type": "integer",
+                                        "example": 10
+                                    },
+                                    "ast": {
+                                        "type": "integer",
+                                        "example": 10
+                                    },
+                                    "blk": {
+                                        "type": "integer",
+                                        "example": 10
+                                    },
+                                    "stl": {
+                                        "type": "integer",
+                                        "example": 10
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "min": {
+                                            "type": "integer",
+                                            "example": 10
+                                        },
+                                        "pts": {
+                                            "type": "integer",
+                                            "example": 10
+                                        },
+                                        "reb": {
+                                            "type": "integer",
+                                            "example": 10
+                                        },
+                                        "ast": {
+                                            "type": "integer",
+                                            "example": 10
+                                        },
+                                        "blk": {
+                                            "type": "integer",
+                                            "example": 10
+                                        },
+                                        "stl": {
+                                            "type": "integer",
+                                            "example": 10
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Stats not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The pts field is required."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "pts": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The pts field is required."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid ID provided, use a valid UUID."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Stats"
+                ],
+                "summary": "Delete stats",
+                "operationId": "5c2ac9e594052f4a6ea96ce71d225f66",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Stats ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Stats not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid ID provided, use a valid UUID."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/teams": {
             "get": {
                 "tags": [
@@ -2786,6 +3258,9 @@
         },
         {
             "name": "Players"
+        },
+        {
+            "name": "Stats"
         },
         {
             "name": "Teams"
