@@ -3,6 +3,8 @@
 namespace Tests\Feature\MatcheTeam;
 
 use App\Models\MatchTeam;
+use App\Models\Player;
+use App\Models\Stats;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
@@ -13,12 +15,17 @@ class MatcheTeamTest extends TestCase
 
     public function test_index_matche_team_endpoint()
     {
-        MatchTeam::factory()->count(3)->create();
+        $matchTeams = MatchTeam::factory()->count(1)->create();
+
+        Stats::factory()->create([
+            'player_id' => Player::factory(),
+            'match_team_id' => $matchTeams->first()->id,
+        ]);
 
         $response = $this->getJson('/api/matche-teams');
 
         $response->assertStatus(200);
-        $response->assertJsonCount(3);
+        $response->assertJsonCount(1);
 
         $response->assertJson(function (AssertableJson $json) {
             $json->has(0, function ($json) {
@@ -38,6 +45,23 @@ class MatcheTeamTest extends TestCase
                     $json->whereType('name', 'string');
                     $json->whereType('slug', 'string');
                 });
+                $json->has('statistics', function ($json) {
+                    $json->has(0, function ($json) {
+                        $json->has('player', function ($json) {
+                            $json->whereType('id', 'string');
+                            $json->whereType('name', 'string');
+                            $json->whereType('position', 'string');
+                        });
+                        $json->has('player_stats', function ($json) {
+                            $json->whereType('min', 'integer');
+                            $json->whereType('pts', 'integer');
+                            $json->whereType('reb', 'integer');
+                            $json->whereType('ast', 'integer');
+                            $json->whereType('blk', 'integer');
+                            $json->whereType('stl', 'integer');
+                        });
+                    });
+                });
             });
         });
     }
@@ -45,6 +69,12 @@ class MatcheTeamTest extends TestCase
     public function test_show_matche_team_endpoint()
     {
         $matchTeam = MatchTeam::factory()->create();
+
+        Stats::factory()->create([
+            'player_id' => Player::factory(),
+            'match_team_id' => $matchTeam->id,
+        ]);
+
 
         $response = $this->getJson("/api/matche-teams/" . $matchTeam->id)
             ->assertStatus(200);
@@ -56,6 +86,7 @@ class MatcheTeamTest extends TestCase
             'winner',
             'match',
             'team',
+            'statistics',
         ]);
 
         $response->assertJson(function (AssertableJson $json) {
@@ -74,6 +105,23 @@ class MatcheTeamTest extends TestCase
                 $json->whereType('id', 'string');
                 $json->whereType('name', 'string');
                 $json->whereType('slug', 'string');
+            });
+            $json->has('statistics', function ($json) {
+                $json->has(0, function ($json) {
+                    $json->has('player', function ($json) {
+                        $json->whereType('id', 'string');
+                        $json->whereType('name', 'string');
+                        $json->whereType('position', 'string');
+                    });
+                    $json->has('player_stats', function ($json) {
+                        $json->whereType('min', 'integer');
+                        $json->whereType('pts', 'integer');
+                        $json->whereType('reb', 'integer');
+                        $json->whereType('ast', 'integer');
+                        $json->whereType('blk', 'integer');
+                        $json->whereType('stl', 'integer');
+                    });
+                });
             });
         });
     }
@@ -118,7 +166,6 @@ class MatcheTeamTest extends TestCase
             'winner' => $matchTeam->winner,
         ])->assertStatus(201);
 
-
         $response->assertJson(function (AssertableJson $json) use ($matchTeam) {
             $json->whereType('id', 'string');
             $json->whereType('role', 'string');
@@ -136,6 +183,7 @@ class MatcheTeamTest extends TestCase
                 $json->whereType('name', 'string');
                 $json->whereType('slug', 'string');
             });
+            $json->whereType('statistics', 'array');
         });
     }
 
@@ -179,6 +227,7 @@ class MatcheTeamTest extends TestCase
                 $json->whereType('name', 'string');
                 $json->whereType('slug', 'string');
             });
+            $json->whereType('statistics', 'array');
         });
 
         $response->assertJson([
@@ -198,6 +247,7 @@ class MatcheTeamTest extends TestCase
                 'name' => $matchTeam->team->name,
                 'slug' => $matchTeam->team->slug,
             ],
+            'statistics' => [],
         ]);
     }
 

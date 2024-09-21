@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Matche;
+use App\Models\MatchTeam;
 use App\Models\Team;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

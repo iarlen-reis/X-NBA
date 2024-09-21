@@ -23,4 +23,9 @@ class MatchTeam extends Model
     {
         return $this->belongsTo(Team::class);
     }
+
+    public function stats()
+    {
+        return $this->hasMany(Stats::class);
+    }
 }

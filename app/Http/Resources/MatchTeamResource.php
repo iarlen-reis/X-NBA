@@ -30,7 +30,24 @@ class MatchTeamResource extends JsonResource
                 'id' => $this->team->id,
                 'name' => $this->team->name,
                 'slug' => $this->team->slug,
-            ]
+            ],
+            'statistics' => $this->stats->map(function ($stat) {
+                return [
+                    'player' => [
+                        'id' => $stat->player->id,
+                        'name' => $stat->player->name,
+                        'position' => $stat->player->position,
+                    ],
+                    'player_stats' => [
+                        'min' => $stat->min,
+                        'pts' => $stat->pts,
+                        'reb' => $stat->reb,
+                        'ast' => $stat->ast,
+                        'blk' => $stat->blk,
+                        'stl' => $stat->stl,
+                    ]
+                ];
+            }),
         ];
     }
 }
