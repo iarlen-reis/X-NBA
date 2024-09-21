@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\MatchTeam;
+use App\Models\Player;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -23,6 +25,8 @@ class StatsFactory extends Factory
             'ast' => $this->faker->numberBetween(0, 100),
             'blk' => $this->faker->numberBetween(0, 100),
             'stl' => $this->faker->numberBetween(0, 100),
+            'player_id' => Player::factory(),
+            'match_team_id' => MatchTeam::factory(),
         ];
     }
 }

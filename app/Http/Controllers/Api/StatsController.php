@@ -20,26 +20,61 @@ class StatsController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/api/stats",
-     *      tags={"Stats"},
-     *      summary="Get all stats",
-     *      @OA\Response(
-     *          response="200",
-     *          description="Success",
-     *          @OA\JsonContent(
-     *              type="array",
-     *              @OA\Items(
-     *                  type="object",
-     *                  @OA\Property(property="id", type="string", example="1"),
-     *                  @OA\Property(property="min", type="integer", example=10),
-     *                  @OA\Property(property="pts", type="integer", example=10),
-     *                  @OA\Property(property="reb", type="integer", example=10),
-     *                  @OA\Property(property="ast", type="integer", example=10),
-     *                  @OA\Property(property="blk", type="integer", example=10),
-     *                  @OA\Property(property="stl", type="integer", example=10),
-     *              )
-     *          )
-     *      )
+     *     path="/api/stats",
+     *     tags={"Stats"},
+     *     summary="Get all stats",
+     *     @OA\Response(
+     *         response="200",
+     *         description="Success",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(
+     *                 type="object",
+     *                 @OA\Property(property="id", type="string", example="1"),
+     *                 @OA\Property(
+     *                     property="player",
+     *                     type="object",
+     *                     @OA\Property(property="id", type="string", example="1"),
+     *                     @OA\Property(property="name", type="string", example="Stephen Curry"),
+     *                     @OA\Property(property="position", type="string", example="PG")
+     *                 ),
+     *                 @OA\Property(
+     *                     property="stats",
+     *                     type="object",
+     *                     @OA\Property(property="min", type="integer", example=10),
+     *                     @OA\Property(property="pts", type="integer", example=10),
+     *                     @OA\Property(property="reb", type="integer", example=10),
+     *                     @OA\Property(property="ast", type="integer", example=10),
+     *                     @OA\Property(property="blk", type="integer", example=10),
+     *                     @OA\Property(property="stl", type="integer", example=10)
+     *                 ),
+     *                 @OA\Property(
+     *                     property="match",
+     *                     type="object",
+     *                     @OA\Property(property="id", type="string", example="1"),
+     *                     @OA\Property(property="date", type="string", format="date-time", example="2023-01-01T00:00:00.000000Z")
+     *                 ),
+     *                 @OA\Property(
+     *                     property="match_team",
+     *                     type="array",
+     *                     @OA\Items(
+     *                         type="object",
+     *                         @OA\Property(property="id", type="string", example="1"),
+     *                         @OA\Property(property="role", type="string", example="home"),
+     *                         @OA\Property(property="score", type="number", format="float", example=110),
+     *                         @OA\Property(property="winner", type="boolean", example=true),
+     *                         @OA\Property(
+     *                             property="team",
+     *                             type="object",
+     *                             @OA\Property(property="id", type="string", example="1"),
+     *                             @OA\Property(property="name", type="string", example="Boston Celtics"),
+     *                             @OA\Property(property="slug", type="string", example="boston-celtics")
+     *                         )
+     *                     )
+     *                 )
+     *             )
+     *         )
+     *     )
      * )
      */
     public function index()
@@ -66,14 +101,41 @@ class StatsController extends Controller
      *          description="Success",
      *          @OA\JsonContent(
      *              type="object",
-     *              @OA\Property(property="id", type="string", example="1"),
-     *              @OA\Property(property="min", type="integer", example=10),
-     *              @OA\Property(property="pts", type="integer", example=10),
-     *              @OA\Property(property="reb", type="integer", example=10),
-     *              @OA\Property(property="ast", type="integer", example=10),
-     *              @OA\Property(property="blk", type="integer", example=10),
-     *              @OA\Property(property="stl", type="integer", example=10),
-     *          )
+     *               @OA\Property(property="id", type="string", example="1"),
+     *               @OA\Property(property="player", type="object",
+     *                   @OA\Property(property="id", type="string", example="1"),
+     *                   @OA\Property(property="name", type="string", example="Stephen Curry"),
+     *                   @OA\Property(property="position", type="string", example="PG")
+     *               ),
+     *               @OA\Property(property="stats", type="object",
+     *                   @OA\Property(property="min", type="integer", example=10),
+     *                   @OA\Property(property="pts", type="integer", example=10),
+     *                   @OA\Property(property="reb", type="integer", example=10),
+     *                   @OA\Property(property="ast", type="integer", example=10),
+     *                   @OA\Property(property="blk", type="integer", example=10),
+     *                   @OA\Property(property="stl", type="integer", example=10)
+     *               ),
+     *               @OA\Property(property="match", type="object",
+     *                   @OA\Property(property="id", type="string", example="1"),
+     *                   @OA\Property(property="date", type="string", format="date-time", example="2023-01-01T00:00:00.000000Z")
+     *               ),
+     *               @OA\Property(property="match_team", type="array",
+     *                   @OA\Items(
+     *                       type="object",
+     *                       @OA\Property(property="id", type="string", example="1"),
+     *                       @OA\Property(property="role", type="string", example="home"),
+     *                       @OA\Property(property="score", type="number", format="float", example=110),
+     *                       @OA\Property(property="winner", type="boolean", example=true),
+     *                       @OA\Property(
+     *                           property="team",
+     *                           type="object",
+     *                           @OA\Property(property="id", type="string", example="1"),
+     *                           @OA\Property(property="name", type="string", example="Boston Celtics"),
+     *                           @OA\Property(property="slug", type="string", example="boston-celtics")
+     *                       )
+     *                   )
+     *               )
+     *           )
      *      ),
      *      @OA\Response(
      *          response="404",
@@ -113,6 +175,8 @@ class StatsController extends Controller
      *              @OA\Property(property="ast", type="integer", example=10),
      *              @OA\Property(property="blk", type="integer", example=10),
      *              @OA\Property(property="stl", type="integer", example=10),
+     *              @OA\Property(property="player_id", type="string", example="1"),
+     *              @OA\Property(property="match_team_id", type="string", example="1"),
      *          )
      *      ),
      *      @OA\Response(
@@ -120,14 +184,41 @@ class StatsController extends Controller
      *          description="Success",
      *          @OA\JsonContent(
      *              type="object",
-     *              @OA\Property(property="id", type="string", example="1"),
-     *              @OA\Property(property="min", type="integer", example=10),
-     *              @OA\Property(property="pts", type="integer", example=10),
-     *              @OA\Property(property="reb", type="integer", example=10),
-     *              @OA\Property(property="ast", type="integer", example=10),
-     *              @OA\Property(property="blk", type="integer", example=10),
-     *              @OA\Property(property="stl", type="integer", example=10),
-     *          )
+     *               @OA\Property(property="id", type="string", example="1"),
+     *               @OA\Property(property="player", type="object",
+     *                   @OA\Property(property="id", type="string", example="1"),
+     *                   @OA\Property(property="name", type="string", example="Stephen Curry"),
+     *                   @OA\Property(property="position", type="string", example="PG")
+     *               ),
+     *               @OA\Property(property="stats", type="object",
+     *                   @OA\Property(property="min", type="integer", example=10),
+     *                   @OA\Property(property="pts", type="integer", example=10),
+     *                   @OA\Property(property="reb", type="integer", example=10),
+     *                   @OA\Property(property="ast", type="integer", example=10),
+     *                   @OA\Property(property="blk", type="integer", example=10),
+     *                   @OA\Property(property="stl", type="integer", example=10)
+     *               ),
+     *               @OA\Property(property="match", type="object",
+     *                   @OA\Property(property="id", type="string", example="1"),
+     *                   @OA\Property(property="date", type="string", format="date-time", example="2023-01-01T00:00:00.000000Z")
+     *               ),
+     *               @OA\Property(property="match_team", type="array",
+     *                   @OA\Items(
+     *                       type="object",
+     *                       @OA\Property(property="id", type="string", example="1"),
+     *                       @OA\Property(property="role", type="string", example="home"),
+     *                       @OA\Property(property="score", type="number", format="float", example=110),
+     *                       @OA\Property(property="winner", type="boolean", example=true),
+     *                       @OA\Property(
+     *                           property="team",
+     *                           type="object",
+     *                           @OA\Property(property="id", type="string", example="1"),
+     *                           @OA\Property(property="name", type="string", example="Boston Celtics"),
+     *                           @OA\Property(property="slug", type="string", example="boston-celtics")
+     *                       )
+     *                   )
+     *               )
+     *           )
      *      ),
      *     @OA\Response(
      *         response="422",
@@ -174,6 +265,8 @@ class StatsController extends Controller
      *              @OA\Property(property="ast", type="integer", example=10),
      *              @OA\Property(property="blk", type="integer", example=10),
      *              @OA\Property(property="stl", type="integer", example=10),
+     *              @OA\Property(property="player_id", type="string", example="1"),
+     *              @OA\Property(property="match_team_id", type="string", example="1"),
      *          )
      *      ),
      *      @OA\Response(
@@ -181,14 +274,41 @@ class StatsController extends Controller
      *          description="Success",
      *          @OA\JsonContent(
      *              type="object",
-     *              @OA\Property(property="id", type="string", example="1"),
-     *              @OA\Property(property="min", type="integer", example=10),
-     *              @OA\Property(property="pts", type="integer", example=10),
-     *              @OA\Property(property="reb", type="integer", example=10),
-     *              @OA\Property(property="ast", type="integer", example=10),
-     *              @OA\Property(property="blk", type="integer", example=10),
-     *              @OA\Property(property="stl", type="integer", example=10),
-     *          )
+     *               @OA\Property(property="id", type="string", example="1"),
+     *               @OA\Property(property="player", type="object",
+     *                   @OA\Property(property="id", type="string", example="1"),
+     *                   @OA\Property(property="name", type="string", example="Stephen Curry"),
+     *                   @OA\Property(property="position", type="string", example="PG")
+     *               ),
+     *               @OA\Property(property="stats", type="object",
+     *                   @OA\Property(property="min", type="integer", example=10),
+     *                   @OA\Property(property="pts", type="integer", example=10),
+     *                   @OA\Property(property="reb", type="integer", example=10),
+     *                   @OA\Property(property="ast", type="integer", example=10),
+     *                   @OA\Property(property="blk", type="integer", example=10),
+     *                   @OA\Property(property="stl", type="integer", example=10)
+     *               ),
+     *               @OA\Property(property="match", type="object",
+     *                   @OA\Property(property="id", type="string", example="1"),
+     *                   @OA\Property(property="date", type="string", format="date-time", example="2023-01-01T00:00:00.000000Z")
+     *               ),
+     *               @OA\Property(property="match_team", type="array",
+     *                   @OA\Items(
+     *                       type="object",
+     *                       @OA\Property(property="id", type="string", example="1"),
+     *                       @OA\Property(property="role", type="string", example="home"),
+     *                       @OA\Property(property="score", type="number", format="float", example=110),
+     *                       @OA\Property(property="winner", type="boolean", example=true),
+     *                       @OA\Property(
+     *                           property="team",
+     *                           type="object",
+     *                           @OA\Property(property="id", type="string", example="1"),
+     *                           @OA\Property(property="name", type="string", example="Boston Celtics"),
+     *                           @OA\Property(property="slug", type="string", example="boston-celtics")
+     *                       )
+     *                   )
+     *               )
+     *           )
      *      ),
      *     @OA\Response(
      *         response="404",

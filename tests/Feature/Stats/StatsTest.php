@@ -22,13 +22,37 @@ class StatsTest extends TestCase
 
         $response->assertJson(function (AssertableJson $json) use ($response) {
             $json->has(0, function ($json) {
-                $json->whereType('id', 'string')
-                    ->whereType('min', 'integer')
-                    ->whereType('pts', 'integer')
-                    ->whereType('reb', 'integer')
-                    ->whereType('ast', 'integer')
-                    ->whereType('blk', 'integer')
-                    ->whereType('stl', 'integer');
+                $json->whereType('id', 'string');
+                $json->has('player', function ($json) {
+                    $json->whereType('id', 'string');
+                    $json->whereType('name', 'string');
+                    $json->whereType('position', 'string');
+                });
+                $json->has('stats', function ($json) {
+                    $json->whereType('min', 'integer');
+                    $json->whereType('pts', 'integer');
+                    $json->whereType('reb', 'integer');
+                    $json->whereType('ast', 'integer');
+                    $json->whereType('blk', 'integer');
+                    $json->whereType('stl', 'integer');
+                });
+                $json->has('match', function ($json) {
+                    $json->whereType('id', 'string');
+                    $json->whereType('date', 'string');
+                });
+                $json->has('match_teams', function ($json) {
+                    $json->has(0, function ($json) {
+                        $json->whereType('id', 'string');
+                        $json->whereType('role', 'string');
+                        $json->whereType('score', 'integer');
+                        $json->whereType('winner', 'boolean');
+                        $json->has('team', function ($json) {
+                            $json->whereType('id', 'string');
+                            $json->whereType('name', 'string');
+                            $json->whereType('slug', 'string');
+                        });
+                    });
+                });
             });
         });
     }
@@ -42,34 +66,46 @@ class StatsTest extends TestCase
 
         $response->assertJsonStructure([
             'id',
-            'min',
-            'pts',
-            'reb',
-            'ast',
-            'blk',
-            'stl',
+            'player',
+            'stats',
+            'match',
+            'match_teams',
+
         ]);
 
         $response->assertJson(function (AssertableJson $json) use ($response) {
-            $json->whereType('id', 'string')
-                ->whereType('min', 'integer')
-                ->whereType('pts', 'integer')
-                ->whereType('reb', 'integer')
-                ->whereType('ast', 'integer')
-                ->whereType('blk', 'integer')
-                ->whereType('stl', 'integer');
+            $json->whereType('id', 'string');
+            $json->has('player', function ($json) {
+                $json->whereType('id', 'string');
+                $json->whereType('name', 'string');
+                $json->whereType('position', 'string');
+            });
+            $json->has('stats', function ($json) {
+                $json->whereType('min', 'integer');
+                $json->whereType('pts', 'integer');
+                $json->whereType('reb', 'integer');
+                $json->whereType('ast', 'integer');
+                $json->whereType('blk', 'integer');
+                $json->whereType('stl', 'integer');
+            });
+            $json->has('match', function ($json) {
+                $json->whereType('id', 'string');
+                $json->whereType('date', 'string');
+            });
+            $json->has('match_teams', function ($json) {
+                $json->has(0, function ($json) {
+                    $json->whereType('id', 'string');
+                    $json->whereType('role', 'string');
+                    $json->whereType('score', 'integer');
+                    $json->whereType('winner', 'boolean');
+                    $json->has('team', function ($json) {
+                        $json->whereType('id', 'string');
+                        $json->whereType('name', 'string');
+                        $json->whereType('slug', 'string');
+                    });
+                });
+            });
         });
-
-
-        $response->assertJson([
-            'id' => $stats->id,
-            'min' => $stats->min,
-            'pts' => $stats->pts,
-            'reb' => $stats->reb,
-            'ast' => $stats->ast,
-            'blk' => $stats->blk,
-            'stl' => $stats->stl,
-        ]);
     }
 
     public function test_show_stats_endpoint_with_invalid_id(): void
@@ -109,27 +145,52 @@ class StatsTest extends TestCase
             'ast' => $stat->ast,
             'blk' => $stat->blk,
             'stl' => $stat->stl,
+            'player_id' => $stat->player_id,
+            'match_team_id' => $stat->match_team_id
         ])->assertStatus(201);
 
 
         $response->assertJsonStructure([
             'id',
-            'min',
-            'pts',
-            'reb',
-            'ast',
-            'blk',
-            'stl',
+            'player',
+            'stats',
+            'match',
+            'match_teams',
+
         ]);
 
         $response->assertJson(function (AssertableJson $json) use ($response) {
-            $json->whereType('id', 'string')
-                ->whereType('min', 'integer')
-                ->whereType('pts', 'integer')
-                ->whereType('reb', 'integer')
-                ->whereType('ast', 'integer')
-                ->whereType('blk', 'integer')
-                ->whereType('stl', 'integer');
+            $json->whereType('id', 'string');
+            $json->has('player', function ($json) {
+                $json->whereType('id', 'string');
+                $json->whereType('name', 'string');
+                $json->whereType('position', 'string');
+            });
+            $json->has('stats', function ($json) {
+                $json->whereType('min', 'integer');
+                $json->whereType('pts', 'integer');
+                $json->whereType('reb', 'integer');
+                $json->whereType('ast', 'integer');
+                $json->whereType('blk', 'integer');
+                $json->whereType('stl', 'integer');
+            });
+            $json->has('match', function ($json) {
+                $json->whereType('id', 'string');
+                $json->whereType('date', 'string');
+            });
+            $json->has('match_teams', function ($json) {
+                $json->has(0, function ($json) {
+                    $json->whereType('id', 'string');
+                    $json->whereType('role', 'string');
+                    $json->whereType('score', 'integer');
+                    $json->whereType('winner', 'boolean');
+                    $json->has('team', function ($json) {
+                        $json->whereType('id', 'string');
+                        $json->whereType('name', 'string');
+                        $json->whereType('slug', 'string');
+                    });
+                });
+            });
         });
     }
 
@@ -144,43 +205,59 @@ class StatsTest extends TestCase
             'ast' => 32,
             'blk' => 15,
             'stl' => 8,
+            'player_id' => $stat->player_id,
+            'match_team_id' => $stat->match_team_id
         ])->assertStatus(200);
 
 
         $response->assertJsonStructure([
             'id',
-            'min',
-            'pts',
-            'reb',
-            'ast',
-            'blk',
-            'stl',
+            'player',
+            'stats',
+            'match',
+            'match_teams',
+
         ]);
 
         $response->assertJson(function (AssertableJson $json) use ($response) {
-            $json->whereType('id', 'string')
-                ->whereType('min', 'integer')
-                ->whereType('pts', 'integer')
-                ->whereType('reb', 'integer')
-                ->whereType('ast', 'integer')
-                ->whereType('blk', 'integer')
-                ->whereType('stl', 'integer');
+            $json->whereType('id', 'string');
+            $json->has('player', function ($json) {
+                $json->whereType('id', 'string');
+                $json->whereType('name', 'string');
+                $json->whereType('position', 'string');
+            });
+            $json->has('stats', function ($json) {
+                $json->whereType('min', 'integer');
+                $json->whereType('pts', 'integer');
+                $json->whereType('reb', 'integer');
+                $json->whereType('ast', 'integer');
+                $json->whereType('blk', 'integer');
+                $json->whereType('stl', 'integer');
+            });
+            $json->has('match', function ($json) {
+                $json->whereType('id', 'string');
+                $json->whereType('date', 'string');
+            });
+            $json->has('match_teams', function ($json) {
+                $json->has(0, function ($json) {
+                    $json->whereType('id', 'string');
+                    $json->whereType('role', 'string');
+                    $json->whereType('score', 'integer');
+                    $json->whereType('winner', 'boolean');
+                    $json->has('team', function ($json) {
+                        $json->whereType('id', 'string');
+                        $json->whereType('name', 'string');
+                        $json->whereType('slug', 'string');
+                    });
+                });
+            });
         });
-
-
-        $response->assertJson([
-            'id' => $stat->id,
-            'min' => 42,
-            'pts' => 140,
-            'reb' => 56,
-            'ast' => 32,
-            'blk' => 15,
-            'stl' => 8,
-        ]);
     }
 
     public function test_update_stats_endpoint_with_invalid_id(): void
     {
+        $stat = Stats::factory()->makeOne();
+
         $response = $this->putJson('/api/stats/9cac53be-803f-475e-98bc-8c73b48b2577', [
             'min' => 42,
             'pts' => 140,
@@ -188,6 +265,8 @@ class StatsTest extends TestCase
             'ast' => 32,
             'blk' => 15,
             'stl' => 8,
+            'player_id' => $stat->player_id,
+            'match_team_id' => $stat->match_team_id
         ])->assertStatus(404);
 
 
@@ -202,6 +281,8 @@ class StatsTest extends TestCase
 
     public function test_update_stats_endpoint_with_type_invalid_id(): void
     {
+        $stat = Stats::factory()->makeOne();
+
         $response = $this->putJson('/api/stats/12', [
             'min' => 42,
             'pts' => 140,
@@ -209,6 +290,8 @@ class StatsTest extends TestCase
             'ast' => 32,
             'blk' => 15,
             'stl' => 8,
+            'player_id' => $stat->player_id,
+            'match_team_id' => $stat->match_team_id
         ])->assertStatus(400);
 
 

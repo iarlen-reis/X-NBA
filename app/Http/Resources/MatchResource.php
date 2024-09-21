@@ -30,7 +30,7 @@ class MatchResource extends JsonResource
                         'id' => $team->team->id,
                         'name' => $team->team->name,
                         'slug' => $team->team->slug,
-                    ]
+                    ],
                 ];
             }),
         ];

@@ -28,6 +28,8 @@ class StatsRequest extends FormRequest
             'ast' => 'required|integer',
             'blk' => 'required|integer',
             'stl' => 'required|integer',
+            'player_id' => 'required|string',
+            'match_team_id' => 'required|string',
         ];
     }
 }
