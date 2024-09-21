@@ -1191,6 +1191,60 @@
                                                     }
                                                 },
                                                 "type": "object"
+                                            },
+                                            "statistics": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "player": {
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "string",
+                                                                    "example": "1"
+                                                                },
+                                                                "name": {
+                                                                    "type": "string",
+                                                                    "example": "LeBron James"
+                                                                },
+                                                                "position": {
+                                                                    "type": "string",
+                                                                    "example": "SF"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        },
+                                                        "player_stats": {
+                                                            "properties": {
+                                                                "min": {
+                                                                    "type": "number",
+                                                                    "example": 34
+                                                                },
+                                                                "pts": {
+                                                                    "type": "number",
+                                                                    "example": 34
+                                                                },
+                                                                "reb": {
+                                                                    "type": "number",
+                                                                    "example": 34
+                                                                },
+                                                                "ast": {
+                                                                    "type": "number",
+                                                                    "example": 34
+                                                                },
+                                                                "blk": {
+                                                                    "type": "number",
+                                                                    "example": 34
+                                                                },
+                                                                "stl": {
+                                                                    "type": "number",
+                                                                    "example": 34
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
                                             }
                                         },
                                         "type": "object"
@@ -1423,6 +1477,60 @@
                                                 }
                                             },
                                             "type": "object"
+                                        },
+                                        "statistics": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "player": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "string",
+                                                                "example": "1"
+                                                            },
+                                                            "name": {
+                                                                "type": "string",
+                                                                "example": "LeBron James"
+                                                            },
+                                                            "position": {
+                                                                "type": "string",
+                                                                "example": "SF"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "player_stats": {
+                                                        "properties": {
+                                                            "min": {
+                                                                "type": "number",
+                                                                "example": 34
+                                                            },
+                                                            "pts": {
+                                                                "type": "number",
+                                                                "example": 34
+                                                            },
+                                                            "reb": {
+                                                                "type": "number",
+                                                                "example": 34
+                                                            },
+                                                            "ast": {
+                                                                "type": "number",
+                                                                "example": 34
+                                                            },
+                                                            "blk": {
+                                                                "type": "number",
+                                                                "example": 34
+                                                            },
+                                                            "stl": {
+                                                                "type": "number",
+                                                                "example": 34
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
                                         }
                                     },
                                     "type": "object"
@@ -2274,29 +2382,107 @@
                                                 "type": "string",
                                                 "example": "1"
                                             },
-                                            "min": {
-                                                "type": "integer",
-                                                "example": 10
+                                            "player": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "example": "1"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Stephen Curry"
+                                                    },
+                                                    "position": {
+                                                        "type": "string",
+                                                        "example": "PG"
+                                                    }
+                                                },
+                                                "type": "object"
                                             },
-                                            "pts": {
-                                                "type": "integer",
-                                                "example": 10
+                                            "stats": {
+                                                "properties": {
+                                                    "min": {
+                                                        "type": "integer",
+                                                        "example": 10
+                                                    },
+                                                    "pts": {
+                                                        "type": "integer",
+                                                        "example": 10
+                                                    },
+                                                    "reb": {
+                                                        "type": "integer",
+                                                        "example": 10
+                                                    },
+                                                    "ast": {
+                                                        "type": "integer",
+                                                        "example": 10
+                                                    },
+                                                    "blk": {
+                                                        "type": "integer",
+                                                        "example": 10
+                                                    },
+                                                    "stl": {
+                                                        "type": "integer",
+                                                        "example": 10
+                                                    }
+                                                },
+                                                "type": "object"
                                             },
-                                            "reb": {
-                                                "type": "integer",
-                                                "example": 10
+                                            "match": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "example": "1"
+                                                    },
+                                                    "date": {
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "example": "2023-01-01T00:00:00.000000Z"
+                                                    }
+                                                },
+                                                "type": "object"
                                             },
-                                            "ast": {
-                                                "type": "integer",
-                                                "example": 10
-                                            },
-                                            "blk": {
-                                                "type": "integer",
-                                                "example": 10
-                                            },
-                                            "stl": {
-                                                "type": "integer",
-                                                "example": 10
+                                            "match_team": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "string",
+                                                            "example": "1"
+                                                        },
+                                                        "role": {
+                                                            "type": "string",
+                                                            "example": "home"
+                                                        },
+                                                        "score": {
+                                                            "type": "number",
+                                                            "format": "float",
+                                                            "example": 110
+                                                        },
+                                                        "winner": {
+                                                            "type": "boolean",
+                                                            "example": true
+                                                        },
+                                                        "team": {
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "string",
+                                                                    "example": "1"
+                                                                },
+                                                                "name": {
+                                                                    "type": "string",
+                                                                    "example": "Boston Celtics"
+                                                                },
+                                                                "slug": {
+                                                                    "type": "string",
+                                                                    "example": "boston-celtics"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
                                             }
                                         },
                                         "type": "object"
@@ -2342,6 +2528,14 @@
                                     "stl": {
                                         "type": "integer",
                                         "example": 10
+                                    },
+                                    "player_id": {
+                                        "type": "string",
+                                        "example": "1"
+                                    },
+                                    "match_team_id": {
+                                        "type": "string",
+                                        "example": "1"
                                     }
                                 },
                                 "type": "object"
@@ -2360,29 +2554,107 @@
                                             "type": "string",
                                             "example": "1"
                                         },
-                                        "min": {
-                                            "type": "integer",
-                                            "example": 10
+                                        "player": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "example": "1"
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Stephen Curry"
+                                                },
+                                                "position": {
+                                                    "type": "string",
+                                                    "example": "PG"
+                                                }
+                                            },
+                                            "type": "object"
                                         },
-                                        "pts": {
-                                            "type": "integer",
-                                            "example": 10
+                                        "stats": {
+                                            "properties": {
+                                                "min": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                },
+                                                "pts": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                },
+                                                "reb": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                },
+                                                "ast": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                },
+                                                "blk": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                },
+                                                "stl": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                }
+                                            },
+                                            "type": "object"
                                         },
-                                        "reb": {
-                                            "type": "integer",
-                                            "example": 10
+                                        "match": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "example": "1"
+                                                },
+                                                "date": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2023-01-01T00:00:00.000000Z"
+                                                }
+                                            },
+                                            "type": "object"
                                         },
-                                        "ast": {
-                                            "type": "integer",
-                                            "example": 10
-                                        },
-                                        "blk": {
-                                            "type": "integer",
-                                            "example": 10
-                                        },
-                                        "stl": {
-                                            "type": "integer",
-                                            "example": 10
+                                        "match_team": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "example": "1"
+                                                    },
+                                                    "role": {
+                                                        "type": "string",
+                                                        "example": "home"
+                                                    },
+                                                    "score": {
+                                                        "type": "number",
+                                                        "format": "float",
+                                                        "example": 110
+                                                    },
+                                                    "winner": {
+                                                        "type": "boolean",
+                                                        "example": true
+                                                    },
+                                                    "team": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "string",
+                                                                "example": "1"
+                                                            },
+                                                            "name": {
+                                                                "type": "string",
+                                                                "example": "Boston Celtics"
+                                                            },
+                                                            "slug": {
+                                                                "type": "string",
+                                                                "example": "boston-celtics"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
                                         }
                                     },
                                     "type": "object"
@@ -2450,29 +2722,107 @@
                                             "type": "string",
                                             "example": "1"
                                         },
-                                        "min": {
-                                            "type": "integer",
-                                            "example": 10
+                                        "player": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "example": "1"
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Stephen Curry"
+                                                },
+                                                "position": {
+                                                    "type": "string",
+                                                    "example": "PG"
+                                                }
+                                            },
+                                            "type": "object"
                                         },
-                                        "pts": {
-                                            "type": "integer",
-                                            "example": 10
+                                        "stats": {
+                                            "properties": {
+                                                "min": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                },
+                                                "pts": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                },
+                                                "reb": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                },
+                                                "ast": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                },
+                                                "blk": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                },
+                                                "stl": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                }
+                                            },
+                                            "type": "object"
                                         },
-                                        "reb": {
-                                            "type": "integer",
-                                            "example": 10
+                                        "match": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "example": "1"
+                                                },
+                                                "date": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2023-01-01T00:00:00.000000Z"
+                                                }
+                                            },
+                                            "type": "object"
                                         },
-                                        "ast": {
-                                            "type": "integer",
-                                            "example": 10
-                                        },
-                                        "blk": {
-                                            "type": "integer",
-                                            "example": 10
-                                        },
-                                        "stl": {
-                                            "type": "integer",
-                                            "example": 10
+                                        "match_team": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "example": "1"
+                                                    },
+                                                    "role": {
+                                                        "type": "string",
+                                                        "example": "home"
+                                                    },
+                                                    "score": {
+                                                        "type": "number",
+                                                        "format": "float",
+                                                        "example": 110
+                                                    },
+                                                    "winner": {
+                                                        "type": "boolean",
+                                                        "example": true
+                                                    },
+                                                    "team": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "string",
+                                                                "example": "1"
+                                                            },
+                                                            "name": {
+                                                                "type": "string",
+                                                                "example": "Boston Celtics"
+                                                            },
+                                                            "slug": {
+                                                                "type": "string",
+                                                                "example": "boston-celtics"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
                                         }
                                     },
                                     "type": "object"
@@ -2560,6 +2910,14 @@
                                     "stl": {
                                         "type": "integer",
                                         "example": 10
+                                    },
+                                    "player_id": {
+                                        "type": "string",
+                                        "example": "1"
+                                    },
+                                    "match_team_id": {
+                                        "type": "string",
+                                        "example": "1"
                                     }
                                 },
                                 "type": "object"
@@ -2578,29 +2936,107 @@
                                             "type": "string",
                                             "example": "1"
                                         },
-                                        "min": {
-                                            "type": "integer",
-                                            "example": 10
+                                        "player": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "example": "1"
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Stephen Curry"
+                                                },
+                                                "position": {
+                                                    "type": "string",
+                                                    "example": "PG"
+                                                }
+                                            },
+                                            "type": "object"
                                         },
-                                        "pts": {
-                                            "type": "integer",
-                                            "example": 10
+                                        "stats": {
+                                            "properties": {
+                                                "min": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                },
+                                                "pts": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                },
+                                                "reb": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                },
+                                                "ast": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                },
+                                                "blk": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                },
+                                                "stl": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                }
+                                            },
+                                            "type": "object"
                                         },
-                                        "reb": {
-                                            "type": "integer",
-                                            "example": 10
+                                        "match": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "example": "1"
+                                                },
+                                                "date": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2023-01-01T00:00:00.000000Z"
+                                                }
+                                            },
+                                            "type": "object"
                                         },
-                                        "ast": {
-                                            "type": "integer",
-                                            "example": 10
-                                        },
-                                        "blk": {
-                                            "type": "integer",
-                                            "example": 10
-                                        },
-                                        "stl": {
-                                            "type": "integer",
-                                            "example": 10
+                                        "match_team": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "example": "1"
+                                                    },
+                                                    "role": {
+                                                        "type": "string",
+                                                        "example": "home"
+                                                    },
+                                                    "score": {
+                                                        "type": "number",
+                                                        "format": "float",
+                                                        "example": 110
+                                                    },
+                                                    "winner": {
+                                                        "type": "boolean",
+                                                        "example": true
+                                                    },
+                                                    "team": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "string",
+                                                                "example": "1"
+                                                            },
+                                                            "name": {
+                                                                "type": "string",
+                                                                "example": "Boston Celtics"
+                                                            },
+                                                            "slug": {
+                                                                "type": "string",
+                                                                "example": "boston-celtics"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
                                         }
                                     },
                                     "type": "object"
