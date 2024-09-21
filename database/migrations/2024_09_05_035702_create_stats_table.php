@@ -20,6 +20,9 @@ return new class extends Migration
             $table->integer('blk');
             $table->integer('stl');
             $table->timestamps();
+
+            $table->foreignUuid('player_id')->references('id')->on('players')->onDelete('cascade');
+            $table->foreignUuid('match_team_id')->references('id')->on('match_team')->onDelete('cascade');
         });
     }
 
